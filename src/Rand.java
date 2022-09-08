@@ -10,7 +10,7 @@ public class Rand {
         System.out.println("A random value between [-10.0, 10.0) is " + d);
         int f = (int) Math.round(Math.random() * 100.0);
         System.out.println("A random value between [0, 100) is " + f);
-        int g = (int)(Math.random() * 51.0 + 1.0 );
+        int g = (int)(Math.random() * 52.0 + 1.0 );
         System.out.println("A random value between [1, 52] is " + g);
     }
 }
