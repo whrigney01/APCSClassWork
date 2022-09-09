@@ -19,6 +19,13 @@ public class Loops {
         for (int i = 0; i<25; i++){
             System.out.print((int)(Math.random()*6+1) + ", ");
         }
+        System.out.println();
+        double randNumber = Math.random();
+        while (randNumber < 0.9){
+            System.out.println(randNumber);
+            randNumber = Math.random();
+        }
+        System.out.println(randNumber);
     }
 
 }

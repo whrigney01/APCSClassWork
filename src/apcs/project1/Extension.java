@@ -15,5 +15,6 @@ public class Extension {
         double posQuadFormula = ((-b + Math.sqrt(Math.pow(b, 2) - 4*a*c))/(2*a));
         double negQuadFormula = ((-b - Math.sqrt(Math.pow(b, 2) - 4*a*c))/(2*a));
         System.out.println(posQuadFormula + "," + negQuadFormula);
+
     }
 }
