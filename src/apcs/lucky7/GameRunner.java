@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class GameRunner {
     public static void main(String[] args) {
-        //Extension: I made the program have 2 games that you can play along with customizable options within the games like the winning value
+        //Extension: I made the program have 2 games (Lucky 7 or chuck-o-luck) that you can play along with customizable options within the games like the winning value and sides of the die
         Scanner reader = new Scanner (System.in);
         double previousBalance = 0;
         double balance = 0.00;

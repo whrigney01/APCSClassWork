@@ -1,5 +1,4 @@
 package apcs.pi;
-import com.sun.tools.jconsole.JConsoleContext;
 
 import java.util.Scanner;
 
@@ -21,24 +20,23 @@ public class PiRunner {
 //
 //        }
 //        System.out.println("Pi approximated to " + numTerms + " terms is " + piApprox);
-//        //part 2
+       //part 2
         System.out.println("Pi can also be calculated with the same equation but with a threshold of the smallest number, instead of a fixed amount of terms.");
         System.out.print("What should the smallest decimal possible be? ");
         double threshold = reader.nextDouble();
         double denom = 1.0;
         piApprox = 0.0;
-        fraction = 0.0;
+        fraction = 1.0;
         posNeg = 1;
         int numTerms = 0;
         while (fraction > threshold){
                 fraction = 4 / (denom * posNeg);
                 posNeg *= -1;
                 denom += 2;
-                piApprox += fraction;
+                piApprox += fraction ;
                 numTerms++;
             }
         System.out.println("Pi approximated until a term is less than " + threshold + " is " + piApprox);
         System.out.println("It required "+ numTerms + " terms to make this approximation");
         }
     }
-}
