@@ -38,5 +38,17 @@ public class PiRunner {
             }
         System.out.println("Pi approximated until a term is less than " + threshold + " is " + piApprox);
         System.out.println("It required "+ numTerms + " terms to make this approximation");
-        }
-    }
+        //part 3 
+        System.out.println("A 3rd way to approximate pi is to generate random coordinate pairs with in a box and see how many of those points fall with in a circle with a area of pi.");
+        System.out.println("How many coordinate pairs should be generated? ");
+        int numCoords = reader.nextInt();
+        int pointsInCircle = 0;
+        for (int i = 0; i > numCoords; i++){
+            double xValue = (Math.random() * 2) - 1;
+            double yValue = (Math.random() * 2) - 1;
+            if (Math.pow(xValue, 2) + Math.pow(yValue, 2) == Math.pow(1, 2)){
+                pointsInCircle ++;
+            }
+        } 
+    }        
+}
