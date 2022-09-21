@@ -53,8 +53,27 @@ public class PiRunner {
             }
         }
         System.out.println(numCoords + " points were generated");
-        System.out.println((int)pointsInCircle + " were inside the circle");
+        System.out.println(pointsInCircle + " were inside the circle");
         System.out.println("Pi/4 is approximately " + (int) pointsInCircle + "/" + numCoords + " = " + (pointsInCircle/numCoords));
         System.out.println(("Pi is approximately " + (pointsInCircle/numCoords)* 4.0));
+        //extension
+        System.out.println();
+        System.out.println("All of the equations so far have been approximations and not very accurate. The next equation can calculate Pi accurately to a certain amount of decimal places.");
+        System.out.print("How many decimal places would you like Pi to be accurate to? ");
+        int places = reader.nextInt();
+        threshold = 1.0/(Math.pow(10, places));
+        fraction = 1.0;
+        piApprox = 0.0;
+        posNeg = 1;
+        numTerms = 0;
+        denom = 1.0;
+        while (Math.abs(fraction) > threshold){
+            fraction = 4.0 / (denom * posNeg);
+            posNeg *= -1;
+            denom += 2;
+            piApprox += fraction;
+            numTerms++;
+        }
+        System.out.println(fraction);
     }
 }
