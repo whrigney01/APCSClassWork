@@ -57,8 +57,12 @@ public class PiRunner {
         System.out.println("Pi/4 is approximately " + (int) pointsInCircle + "/" + numCoords + " = " + (pointsInCircle/numCoords));
         System.out.println(("Pi is approximately " + (pointsInCircle/numCoords)* 4.0));
         //extension
+        // To approximate Pi accuretly I made a variable that is equal to 2 * the inverse of cosine which is equal to Pi.
+        // I then compared however many digits of pi the user wanted to an approximation (same one used in the first 2 parts) and stopped the loop when the approximation of pi and pi were equal
+        //for larger numbers like 7 or 8, the program takes a while to loop through the code so the code is probably just thinking and not broken
         System.out.println();
-        System.out.println("All of the equations so far have been approximations and not very accurate. The next equation can calculate Pi accurately to a certain amount of decimal places.");
+        System.out.println("All of the equations so far have been approximations and not very accurate.");
+        System.out.println("The next equation uses strings and compared them so it can calculate Pi accurately to a certain amount of decimal places.");
         System.out.println("Example: 4 decimal places would be 3.1415");
         System.out.print("How many decimal places would you like Pi to be accurate to? ");
         int places = reader.nextInt();
@@ -70,24 +74,29 @@ public class PiRunner {
         double piCheck = 2 * Math.acos(0.0);
         double piRounded = 0.0;
         String piCheckStr = Double.toString(piCheck);
-        String piApproxStr = "This is purely a place holder so the code does not break";
-        fraction = 4.0 / denom * posNeg;
-        piApprox += fraction;
-        denom += 2;
-        while (piCheckStr.substring(0, (places+2)).equals(piApproxStr.substring(0,(places + 2))) == false){
-            fraction = 4.0 / denom * posNeg;
-            piApprox += fraction;
-            denom += 2;
-            posNeg *= -1;
-            numTerms++;
-            piApproxStr = Double.toString(piApprox);
-
-
-
-
-            piRounded = (Math.round(piApprox * Math.pow(10,places)) / Math.pow(10, places));
-//            System.out.println(piRounded);
+        String piApproxStr = "";
+        boolean runCheck = true;
+        while(runCheck == true) {
+            if (piApproxStr.length() > (places + 2)) {
+                while (piCheckStr.substring(0, (places + 2)).equals(piApproxStr.substring(0, (places + 2))) == false) {
+                    fraction = 4.0 / denom * posNeg;
+                    piApprox += fraction;
+                    denom += 2;
+                    posNeg *= -1;
+                    numTerms++;
+                    piApproxStr = Double.toString(piApprox);
+                }
+                runCheck = false;
+            } else {
+                fraction = 4.0 / denom * posNeg;
+                piApprox += fraction;
+                denom += 2;
+                posNeg *= -1;
+                numTerms++;
+                piApproxStr = Double.toString(piApprox);
+            }
         }
-        System.out.println(piApprox);
+        System.out.println("Pi approximated accurately to " + places + " decimal points is " + piApprox);
+        System.out.println("It required " + numTerms + " terms to make this approximation");
     }
 }
