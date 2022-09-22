@@ -59,21 +59,35 @@ public class PiRunner {
         //extension
         System.out.println();
         System.out.println("All of the equations so far have been approximations and not very accurate. The next equation can calculate Pi accurately to a certain amount of decimal places.");
+        System.out.println("Example: 4 decimal places would be 3.1415");
         System.out.print("How many decimal places would you like Pi to be accurate to? ");
         int places = reader.nextInt();
-        threshold = 1.0/(Math.pow(10, places));
         fraction = 1.0;
         piApprox = 0.0;
         posNeg = 1;
         numTerms = 0;
         denom = 1.0;
-        while (Math.abs(fraction) > threshold){
-            fraction = 4.0 / (denom * posNeg);
-            posNeg *= -1;
-            denom += 2;
+        double piCheck = 2 * Math.acos(0.0);
+        double piRounded = 0.0;
+        String piCheckStr = Double.toString(piCheck);
+        String piApproxStr = "This is purely a place holder so the code does not break";
+        fraction = 4.0 / denom * posNeg;
+        piApprox += fraction;
+        denom += 2;
+        while (piCheckStr.substring(0, (places+2)).equals(piApproxStr.substring(0,(places + 2))) == false){
+            fraction = 4.0 / denom * posNeg;
             piApprox += fraction;
+            denom += 2;
+            posNeg *= -1;
             numTerms++;
+            piApproxStr = Double.toString(piApprox);
+
+
+
+
+            piRounded = (Math.round(piApprox * Math.pow(10,places)) / Math.pow(10, places));
+//            System.out.println(piRounded);
         }
-        System.out.println(fraction);
+        System.out.println(piApprox);
     }
 }
