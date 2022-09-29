@@ -72,7 +72,7 @@ public class PiRunner {
         piApprox = 0.0;
         numTerms = 0;
         double piCheck = 2 * Math.acos(0.0);
-        for(int i=0; i<Integer.MAX_VALUE; i++){
+        for(int i = 0; i<Integer.MAX_VALUE; i++){
             fraction = 4.0 / denom * posNeg;
             piApprox += fraction;
             denom += 2;
