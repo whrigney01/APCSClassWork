@@ -7,6 +7,9 @@ public class Student {
     private double testScore1;
     private double testScore2;
     private double testScore3;
+    private String class1;
+    private String class2;
+    private String class3;
 
     public Student(int id){
         this.name = "";
@@ -83,8 +86,28 @@ public class Student {
         }
     }
 
+    public String getClasses(int period) {
+        if (period == 1){
+            return class1;
+        } else if (period == 2){
+            return  class2;
+        } else if (period == 3){
+            return class3;
+        } else
+            return "n/a";
+    }
+    public void setClasses(int period, String subject) {
+        if (period == 1) {
+            this.class1 = subject;
+        }else if(period == 2){
+            this.class2 = subject;
+        }else if (period == 3) {
+            this.class3 = subject;
+        }
+    }
+
     public String toString() {
-        String info = "Student Name: " + name + "  ID: " + id + "  Test 1: " + testScore1 + "  Test 2: " + testScore2 + "  Test 3: " + testScore3;
+        String info = "Student Name: " + name + "  ID: " + id + "  Period 1: " + class1 + "  Test Scores: "+ testScore1 + ", " + testScore2 + ", " + testScore3 + "  Period 2:  " + class2 + " Test Scores: " + testScore1 + ", " + testScore2 + ", " + testScore3 + "  Period 3: " + class3 + " Test Scores: " + testScore1 + ", " +testScore2 + ", " + testScore3;
         return info;
     }
 }
