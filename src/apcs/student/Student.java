@@ -72,7 +72,15 @@ public class Student {
         this.testScore1 = testScore1;
         this.testScore2 = testScore2;
         this.testScore3 = testScore3;
+    }
 
+
+    public boolean equal(Student other){
+        if (this.getId() == other.getId()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String toString() {

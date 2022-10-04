@@ -57,7 +57,7 @@ public class PiRunner {
         System.out.println("Pi/4 is approximately " + (int) pointsInCircle + "/" + numCoords + " = " + (pointsInCircle/numCoords));
         System.out.println(("Pi is approximately " + (pointsInCircle/numCoords)* 4.0));
         //extension
-        // To approximate Pi accuretly I made a variable that is equal to 2 * the inverse of cosine which is equal to Pi.
+        // To approximate Pi accurately I made a variable that is equal to 2 * the inverse of cosine which is equal to Pi.
         // I then multiplied the approximated poi (from same equation as first 2 parts) value by 10, 100, 1000... and then rounded it down to compare 2 whole numbers.
         //for larger numbers like 7 or 8, the program takes a while to loop through the code and get to the very small decimals so the code is probably just thinking and not broken.
         System.out.println();

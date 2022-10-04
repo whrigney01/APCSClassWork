@@ -60,20 +60,20 @@ public class StudentRunner {
        System.out.println ("Maximum score: " + s3.getMaximum());
 
        System.out.println ();
-//
-//       if (s1.equals(s2)) {
-//           System.out.println(s1.getName() + " is actually the same student as " + s2.getName());
-//       }
-//       else{
-//           System.out.println(s1.getName() + " is a different student as " + s2.getName());
-//       }
-//
-//       if (s1.equals(s3)) {
-//           System.out.println(s1.getName() + " is actually the same student as " + s3.getName());
-//       }
-//       else{
-//           System.out.println(s1.getName() + " is a different student as " + s3.getName());
-//       }
+
+       if (s1.equals(s2)) {
+           System.out.println(s1.getName() + " is actually the same student as " + s2.getName());
+       }
+       else{
+           System.out.println(s1.getName() + " is a different student as " + s2.getName());
+       }
+
+       if (s1.equals(s3)) {
+           System.out.println(s1.getName() + " is actually the same student as " + s3.getName());
+       }
+       else{
+           System.out.println(s1.getName() + " is a different student as " + s3.getName());
+       }
     }
 }
 
