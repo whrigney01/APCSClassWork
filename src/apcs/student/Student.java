@@ -4,9 +4,16 @@ public class Student {
 
     private String name;
     private int id;
-    private double testScore1;
-    private double testScore2;
-    private double testScore3;
+    private double class1Test1;
+    private double class1Test2;
+    private double class1Test3;
+    private double class2Test1;
+    private double class2Test2;
+    private double class2Test3;
+    private double class3Test1;
+    private double class3Test2;
+    private double class3Test3;
+
     private String class1;
     private String class2;
     private String class3;
@@ -24,27 +31,68 @@ public class Student {
         this.name = name;
     }
 
-    public double getScore(int test) {
-        if (test == 1) {
-            return testScore1;
-        } else if (test == 2) {
-            return  testScore2;
-        } else if (test == 3) {
-            return testScore3;
-        }else {
+    public double getScore(int period, int test) {
+        if (period == 1) {
+            if (test == 1) {
+                return class1Test1;
+            } else if (test == 2) {
+                return class1Test2;
+            } else if (test == 3) {
+                return class1Test3;
+            } else {
+                return -1.0;
+            }
+        } else if (period == 2) {
+            if (test == 1) {
+                return class2Test1;
+            } else if (test == 2) {
+                return class2Test2;
+            } else if (test == 3) {
+                return class2Test3;
+            } else {
+                return -1.0;
+            }
+        } else if (period == 3) {
+            if (test == 1) {
+                return class3Test1;
+            } else if (test == 2) {
+                return class3Test2;
+            } else if (test == 3) {
+                return class3Test3;
+            } else {
+                return -1.0;
+            }
+        }else{
             return -1.0;
         }
-
     }
 
 
-    public void setScore(int test, double score) {
-        if (test == 1) {
-            testScore1 = score;
-        } else if (test == 2) {
-            testScore1 = score;
-        } else if (test == 3) {
-            testScore1 = score;
+    public void setScore(int period, int test, double score) {
+        if (period == 1) {
+            if (test == 1) {
+                class1Test1 = score;
+            } else if (test == 2) {
+                class1Test2 = score;
+            } else if (test == 3) {
+                class1Test3 = score;
+            }
+        }else if (period == 2) {
+            if (test == 1) {
+                class2Test1 = score;
+            } else if (test == 2) {
+                class2Test2 = score;
+            } else if (test == 3) {
+                class2Test3 = score;
+            }
+        }else if (period == 3) {
+            if (test == 1) {
+                class3Test1 = score;
+            } else if (test == 2) {
+                class3Test2 = score;
+            } else if (test == 3) {
+                class3Test3 = score;
+            }
         }
     }
 
@@ -52,29 +100,90 @@ public class Student {
         return id;
     }
 
-    public double getAverage() {
-        return (testScore1 + testScore2 + testScore3)/3;
-    }
-
-    public double getMaximum() {
-        if (testScore1 > testScore2) {
-            if (testScore1 > testScore3) {
-                return testScore1;
-            } else if (testScore3 > testScore2) {
-                return testScore3;
-            } else {
-                return testScore2;
-            }
-        } else {
+    public double getAverages(int period) {
+        if (period == 1){
+            return (class1Test1 +  class1Test2 + class1Test3)/3;
+        }else if (period == 2){
+            return (class2Test1 +  class2Test2 + class2Test3)/3;
+        }else if (period == 3){
+            return (class3Test1 +  class3Test2 + class3Test3)/3;
+        }else{
             return -1.0;
         }
     }
-    public Student(String name, int id, double testScore1, double testScore2, double testScore3){
+
+    public double getAllAverages() {
+        return ((class1Test1 + class1Test2 + class1Test3 + class2Test1 + class2Test2 + class2Test3 + class3Test1 + class3Test2 + class3Test3) / 9);
+    }
+
+    public double getMaximum(int period) {
+        if (period == 1) {
+            if (class1Test1 > class1Test2) {
+                if (class1Test1 > class1Test3) {
+                    return class1Test1;
+                } else if (class1Test3 > class1Test2) {
+                    return class1Test3;
+                }else {
+                    return class1Test3;
+                }
+            }else if (class1Test2 > class1Test3){
+                return class1Test2;
+            }else if (class1Test3 > class1Test2){
+                return class1Test3;
+            }else{
+                return -1.0;
+            }
+         }else if (period == 2) {
+             if (class2Test1 > class2Test2) {
+                 if (class2Test1 > class2Test3) {
+                     return class2Test1;
+                 } else if (class2Test3 > class2Test2) {
+                     return class2Test3;
+                 }else {
+                     return class2Test3;
+                 }
+             }else if (class2Test2 > class2Test3){
+                 return class2Test2;
+             }else if (class2Test3 > class2Test2){
+                 return class2Test3;
+             }else{
+                 return -1.0;
+             }
+         }else if (period == 3) {
+            if (class3Test1 > class3Test2) {
+                if (class3Test1 > class3Test3) {
+                    return class3Test1;
+                } else if (class3Test3 > class3Test2) {
+                    return class3Test3;
+                }else {
+                    return class3Test3;
+                }
+            }else if (class3Test2 > class3Test3){
+                return class3Test2;
+            }else if (class3Test3 > class3Test2){
+                return class3Test3;
+            }else{
+                return -1.0;
+            }
+         }else
+             return -1.0;
+    }
+    public Student(String name, int id, double class1test1, double class1test2, double class1Test3, double class2Test1, double class2Test2, double class2Test3, double class3Test1, double class3Test2, double class3Test3, String class1, String class2, String class3){
         this.name = name;
         this.id = id;
-        this.testScore1 = testScore1;
-        this.testScore2 = testScore2;
-        this.testScore3 = testScore3;
+        this.class1 = class1;
+        this.class2 = class2;
+        this.class3 = class3;
+        this.class1Test1 = class1Test1;
+        this.class1Test2 = class1Test2;
+        this.class1Test3 = class1Test3;
+        this.class2Test1 = class2Test1;
+        this.class2Test2 = class2Test2;
+        this.class2Test3 = class2Test3;
+        this.class3Test1 = class3Test1;
+        this.class3Test2 = class3Test2;
+        this.class3Test3 = class3Test3;
+
     }
 
 
@@ -106,8 +215,12 @@ public class Student {
         }
     }
 
+    public boolean killStudent(){
+        return true;
+    }
+
     public String toString() {
-        String info = "Student Name: " + name + "  ID: " + id + "  Period 1: " + class1 + "  Test Scores: "+ testScore1 + ", " + testScore2 + ", " + testScore3 + "  Period 2:  " + class2 + " Test Scores: " + testScore1 + ", " + testScore2 + ", " + testScore3 + "  Period 3: " + class3 + " Test Scores: " + testScore1 + ", " +testScore2 + ", " + testScore3;
+        String info = "Student Name: " + name + "  ID: " + id + "  Period 1: " + class1 + "  Test Scores: "+ class1Test1 + ", " + class1Test2 + ", " + class1Test3 + "  Period 2:  " + class2 + " Test Scores: " + class2Test1 + ", " + class2Test2 + ", " + class2Test3 + "  Period 3: " + class3 + " Test Scores: " + class3Test1 + ", " +class3Test2+ ", " + class3Test3;
         return info;
     }
 }
