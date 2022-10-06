@@ -187,8 +187,8 @@ public class Student {
     }
 
 
-    public boolean equal(Student other){
-        if (this.getId() == other.getId()){
+    public boolean equals (Student other){
+        if (this.id == other.getId()){
             return true;
         } else {
             return false;
@@ -215,8 +215,25 @@ public class Student {
         }
     }
 
-    public boolean killStudent(){
-        return true;
+    public void isStudentDead(Student other){
+        if (this.id == other.getId()) {
+            int randVal = (int) (Math.random() * 2 + 1);
+            if (randVal == 1) {
+                System.out.println(this.getName() + " is committing identity theft on " + other.getName());
+                System.out.println( this.getName() + " died because he committed identity theft");
+            } else {
+                System.out.println(other.getName() + " is committing identity theft on " + other.getName());
+                System.out.println(other.getName() + " died because he committed identity theft");
+            }
+        }
+    }
+
+    public boolean compareStudents(Student other) {
+        if (this.getAllAverages() >= other.getAllAverages()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String toString() {
