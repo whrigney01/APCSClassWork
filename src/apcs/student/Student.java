@@ -222,7 +222,7 @@ public class Student {
                 System.out.println(this.getName() + " is committing identity theft on " + other.getName());
                 System.out.println( this.getName() + " died because he committed identity theft");
             } else {
-                System.out.println(other.getName() + " is committing identity theft on " + other.getName());
+                System.out.println(other.getName() + " is committing identity theft on " + this.getName());
                 System.out.println(other.getName() + " died because he committed identity theft");
             }
         }
