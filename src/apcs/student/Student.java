@@ -194,7 +194,6 @@ public class Student {
             return false;
         }
     }
-
     public String getClasses(int period) {
         if (period == 1){
             return class1;
