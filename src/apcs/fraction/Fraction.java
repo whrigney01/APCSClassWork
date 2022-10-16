@@ -65,11 +65,13 @@ public class Fraction {
         }
     }
 
-//    Fraction simplify (){
-//        for(int i = 1; i < this.denominator; i++){
-//            if (x == int(x))
-//        }
-//    }
+    Fraction simplify (){
+        int num = this.numerator;
+        int denom = this.denominator;
+        for(int i = this.denominator; i > 0; i--){
+
+        }
+    }
 
     Fraction exponent (){
 
