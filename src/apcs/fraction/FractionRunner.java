@@ -46,6 +46,8 @@ public class FractionRunner {
         System.out.println (f1 + " == " + f2 + " = " + f1.equals (f2));
         System.out.println (f2 + " == " + f1 + " = " + f2.equals (f1));
 
+        Fraction f3 = new Fraction(9,3);
+        System.out.println(f3.getNumerator() + " / " + f3.getDenominator() + " simplified is " + f3.simplify());
 
     }
 }

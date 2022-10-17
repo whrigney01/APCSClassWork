@@ -65,16 +65,29 @@ public class Fraction {
         }
     }
 
-    Fraction simplify (){
-        int num = this.numerator;
-        int denom = this.denominator;
-        for(int i = this.denominator; i > 0; i--){
-
+    String simplify () {
+        int firstNum = this.numerator;
+        int secondNum = this.denominator;
+        int tempSubtract = 1;
+        int tempDiff = 1;
+        int gcf = 1;
+        if (firstNum < secondNum){
+            while (tempSubtract != 0) {
+                tempSubtract = Math.abs(firstNum - secondNum);
+                gcf = secondNum;
+                secondNum = tempSubtract;
+            }
+        }else{
+            while (tempSubtract != 0) {
+                tempSubtract = Math.abs(secondNum - firstNum);
+                gcf = firstNum;
+                firstNum = tempSubtract;
+            }
         }
+        return (this.numerator/gcf) + " / " + (this.denominator/gcf);
     }
-
-    Fraction exponent (){
-
-    }
+//    Fraction exponent (){
+//
+//    }
 
 }
