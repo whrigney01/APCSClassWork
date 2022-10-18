@@ -1,5 +1,7 @@
 package apcs.fraction;
 
+//Extension: I made a simplify method that uses the Euclidean Algorithm to find the greatest common factors through subtraction. I also added a exponent method that uses Math.pow to raise the fraction to a certain power.
+// Finally, I added a compare method that lets the user specify weather they want to know if the fraction is greater than or less than the other fraction that they pass through.
 /**
  * The fraction class can be used to add, subtract, multiply, divide and compare
  * fractions without the loss of accuracy that comes with using the primitive double
@@ -158,7 +160,7 @@ public class Fraction {
      */
     public Boolean compare (String type, Fraction other){
         int comDenom = this.denominator * other.getDenominator();
-        if (type.equals("greater"){
+        if (type.equals("greater")){
              int num1 = this.numerator*comDenom;
              int num2 = other.getNumerator()*comDenom;
              if (num1 > num2){
