@@ -13,7 +13,8 @@ public class Fraction {
 
     /**
      * Creates a new fraction with a specified numerator and denominator
-     * @param numerator new fraction's numerator
+     *
+     * @param numerator   new fraction's numerator
      * @param denominator new fraction's denominator
      */
     public Fraction(int numerator, int denominator) {
@@ -23,6 +24,7 @@ public class Fraction {
 
     /**
      * Gets the fraction's numerator
+     *
      * @return The numerator
      */
     public int getNumerator() {
@@ -31,6 +33,7 @@ public class Fraction {
 
     /**
      * Gets the fraction's denominator
+     *
      * @return The denominator
      */
     public int getDenominator() {
@@ -39,6 +42,7 @@ public class Fraction {
 
     /**
      * Sets the fraction's numerator
+     *
      * @param numerator New numerator
      */
     public void setNumerator(int numerator) {
@@ -47,6 +51,7 @@ public class Fraction {
 
     /**
      * Sets the fraction's denominator
+     *
      * @param denominator New denominator
      */
     public void setDenominator(int denominator) {
@@ -54,15 +59,12 @@ public class Fraction {
     }
 
     public String toString() {
-        if (this.denominator == 0) {
-            return "Undefined";
-        } else {
             return numerator + "/" + denominator;
-        }
     }
 
     /**
      * Adds the passed fraction to this fraction and returns result as a new fraction
+     *
      * @param other Other fraction to be added
      * @return A new fraction that is the sum of this fraction and the passed fraction
      */
@@ -72,8 +74,10 @@ public class Fraction {
         Fraction newFrac = new Fraction(num, denom);
         return newFrac;
     }
+
     /**
      * Subtracts this fraction and a passed fraction
+     *
      * @param other Other fraction to be subtracted
      * @return A new fraction that is the different between this fraction and the passed fraction
      */
@@ -83,8 +87,10 @@ public class Fraction {
         Fraction newFrac = new Fraction(num, denom);
         return newFrac;
     }
+
     /**
      * Multiplies this fraction and a passed fraction
+     *
      * @param other Other fraction to be multiplied
      * @return A new fraction that is the product of this fraction and the passed fraction
      */
@@ -94,41 +100,44 @@ public class Fraction {
         Fraction newFrac = new Fraction(num, denom);
         return newFrac;
     }
+
     /**
      * Divides this fraction and a passed fraction
+     *
      * @param other Other fraction to be divided
      * @return A new fraction that is the quotient of this fraction and the passed fraction
      */
-    Fraction divide (Fraction other) {
+    Fraction divide(Fraction other) {
         int num = this.numerator * other.getDenominator();
         int denom = this.denominator * other.getNumerator();
         Fraction newFrac = new Fraction(num, denom);
         return newFrac;
     }
 
-    public boolean equals (Fraction other) {
-        if(this.numerator*other.getDenominator() == this.denominator * other.getNumerator()){
+    public boolean equals(Fraction other) {
+        if (this.numerator * other.getDenominator() == this.denominator * other.getNumerator()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     /**
      * Simplifies the fraction
+     *
      * @return Most simplified version of the fraction. Returns null if the fraction is undefined
      */
-    Fraction simplify () {
+    Fraction simplify() {
         int firstNum = Math.abs(this.numerator);
         int secondNum = Math.abs(this.denominator);
         int posNeg = 1;
         int gcf = 1;
 
-        if(this.denominator < 0 && this.numerator < 0){
+        if (this.denominator < 0 && this.numerator < 0) {
             posNeg = -1;
         }
 
-        if(this.denominator == 0){
+        if (this.denominator == 0) {
             return null;
         }
 
@@ -140,35 +149,37 @@ public class Fraction {
             }
         }
         gcf = firstNum * posNeg;
-        return new Fraction(this.numerator/gcf ,this.denominator/gcf);
+        return new Fraction(this.numerator / gcf, this.denominator / gcf);
     }
 
     /**
      * Raises the fraction to a passed power
+     *
      * @param power The power that the fraction should be raised to
      * @return New fraction that is the original fraction raised to the passed power
      */
-    Fraction exponent (int power){
-        return new Fraction((int) Math.pow(this.numerator, power), (int)Math.pow(this.denominator,power));
+    Fraction exponent(int power) {
+        return new Fraction((int) Math.pow(this.numerator, power), (int) Math.pow(this.denominator, power));
     }
 
     /**
      * Compares 2 fractions to see if it is greater than or less than the other passed fraction
-     * @param type "greater" or "less" based on what the user wants to compare
+     *
+     * @param type  "greater" or "less" based on what the user wants to compare
      * @param other other fraction to be compared
      * @return returns true if the fraction is greater than or less than based on what type the user passes through
      */
-    public Boolean compare (String type, Fraction other){
+    public Boolean compare(String type, Fraction other) {
         int comDenom = this.denominator * other.getDenominator();
-        if (type.equals("greater")){
-             int num1 = this.numerator*comDenom;
-             int num2 = other.getNumerator()*comDenom;
-             if (num1 > num2){
-                 return true;
-             }else{
-                 return false;
-             }
-        } else if(type.equals("less")) {
+        if (type.equals("greater")) {
+            int num1 = this.numerator * comDenom;
+            int num2 = other.getNumerator() * comDenom;
+            if (num1 > num2) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
             int num1 = this.numerator * comDenom;
             int num2 = other.getNumerator() * comDenom;
             if (num1 > num2) {
@@ -176,8 +187,6 @@ public class Fraction {
             } else {
                 return true;
             }
-        }else{
-            return null;
         }
     }
 }
