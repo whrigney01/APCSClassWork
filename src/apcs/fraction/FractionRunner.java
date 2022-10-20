@@ -48,7 +48,7 @@ public class FractionRunner {
         int numerator = reader.nextInt();
         System.out.print("Enter a Denominator: ");
         int denominator = reader.nextInt();
-        System.out.print("Enter an Operation: ");
+        System.out.print("Enter an Operation (+, -, *, /): ");
         String op = reader.next();
         System.out.print("Enter a Numerator: ");
         int numerator2 = reader.nextInt();
