@@ -16,10 +16,14 @@ public class BugRunner {
 
         Location loc = new Location(2,5);
         Bug buggy = new Bug();
-        world.add(buggy);
+        world.add(loc, buggy);
         Rock rocky = new Rock();
         world.add(new Location(5,2), rocky);
-
+        Actor acty = new Actor();
+        world.add(new Location(6,4), acty);
+        MyActor myacty = new MyActor();
+        world.add(myacty);
+        world.add (new BoxBug(4));
 
         world.show();
     }
