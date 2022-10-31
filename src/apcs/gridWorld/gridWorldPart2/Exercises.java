@@ -24,7 +24,7 @@ public class Exercises {
         world.add(new Location(10,30), zy);
 
         DancingBug dancy = new DancingBug();
-        world.add(new Location(10, 30), dancy);
+        world.add(new Location(20, 30), dancy);
 
         PongBug pongy = new PongBug();
         world.add(new Location(20, 10), pongy);
