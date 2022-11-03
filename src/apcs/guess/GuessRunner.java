@@ -48,23 +48,15 @@ public class GuessRunner {
                 int highLimit = 100;
                 System.out.print("Enter the number you would like the computer to guess: ");
                 Value value1 = new Value(reader.nextInt());
-                while(isRoboGuessin = true) {
-                    Value roboGuess = new Value((int) (Math.random()*(highLimit - lowLimit) + (lowLimit + 1)))
-                        if (value.equals(userGuess)) {
-                            System.out.println("You guessed correctly! You took " + guessNum + " guess(es) to find the number!");
-                            gameRunning = false;
-                            System.out.println("Thanks for Playing!");
-                        } else if (!value.compare("greater", userGuess)) {
-                            System.out.println("Your guess was too high. That's " + guessNum + " guess(es)");
-                            guessNum++;
-                        } else if (!value.compare("less", userGuess)) {
-                            System.out.println("Your guess was too small. That's " + guessNum + " guess(es)");
-                            guessNum++;
-                        } else {
-                            System.out.println("How did you even get this? You get a cookie. That's " + guessNum + " guess(es)");
-                        }
-                        System.out.println();
-
+                while(isRoboGuessin == true) {
+                    Value roboGuess = new Value((int) (Math.random()*(highLimit - lowLimit) + (lowLimit + 1)));
+                    System.out.println("Is " + roboGuess + " higher, lower or the same number as " + value1);
+                    System.out.println("Higher (0)\nLower (1)\nSame (3)");
+                    int closnes = reader.nextInt();
+                    if(closnes == 3){
+                        isRoboGuessin = false;
+                        System.out.println("Robo Wins!");
+                    }
                 }
             }
         }
