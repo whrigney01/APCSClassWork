@@ -51,13 +51,14 @@ public class GuessRunner {
                 Value value1 = new Value(reader.nextInt());
                 while(isRoboGuessin) {
                     Value roboGuess = new Value((int) (Math.random()*(highLimit - lowLimit) + (lowLimit + 1)));
-                    System.out.println("\nIs " + roboGuess + " higher, lower or the same number as " + value1);
+                    guessNum++;
+                    System.out.println("\nIs " + roboGuess + " higher, lower or the same number as " + value1 + ". The robot has guessed " + guessNum + " times.");
                     System.out.println("Higher (0)\nLower (1)\nSame (2)");
                     int closnes = reader.nextInt();
                     if(closnes == 2 && roboGuess.getValue() == value1.getValue()) {
                         isRoboGuessin = false;
                         gameRunning = false;
-                        System.out.println("Robo Wins!");
+                        System.out.println("Robo Wins and guesses the number in " + guessNum + " guess(es)! See if you can beat the robot by playing against it in the competition mode. ");
                     }else if(closnes == 1 && roboGuess.getValue() < value1.getValue()){
                         lowLimit = roboGuess.getValue();
                     }else if(closnes == 0 && roboGuess.getValue() > value1.getValue()){
