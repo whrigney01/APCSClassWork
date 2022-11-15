@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class GuessRunner {
     public static void main(String[] args) {
+        //extension: I create a mode where the computer plays, and you respond to it. Except you aren't doing much because if you enter the incorrect response, it tells you to say the right answer.
+        //I also made a mode where you can play against the computer and it works the same as the base game except each time you guess a RNG creates a guess for the robot it narrows down on to the right answer.
+       //Once someone gets the number correct, the computer tells you how many guesses it took you or the robot to guess corectly
         Value value = new Value();
         int guessNum = 0;
         int lowLimit = 0;
@@ -36,6 +39,7 @@ public class GuessRunner {
                         guessNum++;
                         System.out.println("Your guess was too small. That's " + guessNum + " guess(es)");
                     } else {
+
                         System.out.println("How did you even get this? You get a cookie. That's " + guessNum + " guess(es)");
                     }
                     System.out.println();
