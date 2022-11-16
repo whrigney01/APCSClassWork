@@ -6,10 +6,13 @@ import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
-        double array[] = new double [3];
+        System.out.print("How many test scores would you like to enter? ");
+        int numScores = reader.nextInt();
+        double array[] = new double [numScores];
         for(int i = 0; i < array.length; i++){
-            array[i] = promptInt(reader, "aeae", 0.0, 100.0);
+            array[i] = promptInt(reader, "Enter a test score between 0.0 and 100.0: ", 0.0, 100.0);
         }
+        System.out.println();
         System.out.println("The test scores are : " + Arrays.toString(array));
         System.out.println("The maximum score is: " + max(array));
         System.out.println("The minimum score is: " + min(array));
@@ -73,18 +76,23 @@ public class Runner {
     public static double promptInt(Scanner reader, String prompt, double low, double high){
         boolean answer = false;
         while(answer == false) {
-            System.out.print("Enter a test score from " + low + " to " + high +": ");
+            System.out.print(prompt);
             try{
-                if (reader.nextDouble() >= low && reader.nextDouble() <= high) {
-                    return reader.nextDouble();
+                double response = reader.nextDouble();
+                if (response >= low && response <= high) {
+                    return response;
                 }else{
-                    System.out.println("Please enter a test score between " + low + " to " + high);
+                    System.out.println("Please enter a score between " + low + " to " + high);
                 }
-            } catch (Error e) {
-                Error error = e;
-                System.out.println("Please enter a numerical test score from 0.0 to 100.0");
+            } catch (Exception e) {
+                String error = reader.nextLine();
+                System.out.println("Please enter a numerical score from " + low + " to " + high);
             }
         }
-        return low;
+        return 65.9;
+    }
+
+    public static double range(double args[]){
+
     }
 }

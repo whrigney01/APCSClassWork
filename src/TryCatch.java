@@ -9,8 +9,11 @@ public class TryCatch {
             System.out.print("Enter an Integer: ");
             try {
                 int x = reader.nextInt();
-                if (100 / x > 5) System.out.println("Success");
-                else System.out.println("Failure");
+                if (100 / x > 5) {
+                    System.out.println("Success");
+                } else {
+                    System.out.println("Failure");
+                }
                 tryAgain = false;
             } catch (ArithmeticException e) {
                 System.out.println("You can't divide by 0 you math deprived monkey. Try Again!");
