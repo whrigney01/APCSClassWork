@@ -19,6 +19,7 @@ public class Runner {
         System.out.println("The mean of the scores is: " + mean(array));
         System.out.println("The median of the scores is: " + median(array));
         System.out.println("The mode of the scores is: " + mode(array));
+        System.out.println("The range of the scores is " + range(array));
     }
     public static double min(double args[]){
         double min = Double.MAX_VALUE;
@@ -89,10 +90,13 @@ public class Runner {
                 System.out.println("Please enter a numerical score from " + low + " to " + high);
             }
         }
+        //random value to return because java is dum and needed a return statement.
+        // there is no possible way to return that value however because the only way to get out of the while loop is to return
         return 65.9;
     }
 
     public static double range(double args[]){
-
+        Arrays.sort(args);
+        return args[args.length - 1] - args[0];
     }
 }
