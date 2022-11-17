@@ -5,6 +5,11 @@ import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) {
+        //Extensions:
+        //I allowed for the user to declare the amount of test scores they would like to enter by taking an input and declaring the array with that input.
+        //I create a mode method that after the user has entered the score, it will return the most frequent number from the data. This works by having a for loop inside another for loop that checks every value of the array to see if it is equal to a certain value in the array.
+        //If it is equal it adds 1 to a counter variable and uses an if statement similar to a maximum program to find the number in the array with the max amount of repeats
+        //I also caculated the range of the array by sorting it from lowest to highest and then subtracting the first number in the array from the last number.
         Scanner reader = new Scanner(System.in);
         System.out.print("How many test scores would you like to enter? ");
         int numScores = reader.nextInt();
