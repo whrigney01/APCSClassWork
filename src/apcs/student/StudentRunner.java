@@ -1,8 +1,5 @@
 package apcs.student;
 
-import java.security.spec.RSAOtherPrimeInfo;
-import java.sql.PseudoColumnUsage;
-
 public class StudentRunner {
 
 
@@ -10,7 +7,7 @@ public class StudentRunner {
    public static void main(String[] args) {
       System.out.println("Building Student 1");
       System.out.println();
-      Student s1 = new Student (123456);
+      Student s1 = new Student ("Herman Johnson", 123456, 98, 96, 82);
       s1.setName("Sergio Aguilar");
       s1.setScore(1, 1, 95.0);
       s1.setScore(1, 2, 87.5);
@@ -50,7 +47,7 @@ public class StudentRunner {
 
       System.out.println("Building Student 2");
       System.out.println();
-      Student s2 = new Student (987654);
+      Student s2 = new Student ("Herman Johnson", 987654, 98, 96, 82);
       s2.setName("Sarah Bates");
       s2.setScore(1, 1, 10.0);
       s2.setScore(1, 2, 37.6);
@@ -90,7 +87,7 @@ public class StudentRunner {
 
       System.out.println("Building Student 3 (With same id as Student 1)");
       System.out.println();
-      Student s3 = new Student (123456);
+      Student s3 = new Student ("Herman Johnson", 123456, 98, 96, 82);
       s3.setName("Herman Johnson");
       s3.setScore(1, 1, 98);
       s3.setScore(1, 2, 76.23);
