@@ -33,6 +33,17 @@ public class PlayListTester {
         System.out.println("List is " + aList.size() + " songs big" );
         System.out.println();
 
+        System.out.println("What song index do you want to insert at: ");
+        int num3 = reader.nextInt();
+        System.out.println("What song do you want to add: ");
+        String songName = reader.nextLine();
+        aList.insert(1, songName);
+        System.out.println();
+
+        System.out.println ("List is:\n" + aList);
+        System.out.println("List is " + aList.size() + " songs big" );
+        System.out.println();
+
         System.out.print("What song index do you want to remove: ");
         int num2 = reader.nextInt();
         aList.remove(num2);
@@ -41,6 +52,8 @@ public class PlayListTester {
         System.out.println ("List is:\n" + aList);
         System.out.println("List is " + aList.size() + " songs big" );
         System.out.println();
+
+
 
     }
 }
