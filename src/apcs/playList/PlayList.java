@@ -31,6 +31,7 @@ public class PlayList {
         }else{
             songList.get(index).setPlays(songList.get(index).getPlays() + 1);
             System.out.println(songList.get(index).toString());
+
         }
     }
 
@@ -59,12 +60,21 @@ public class PlayList {
     }
 
     public void move(int fromIndex, int toIndex){
+
         if(fromIndex < 0 || fromIndex >= songList.size() || toIndex < 0 || toIndex >= songList.size()){
             throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
-        }else{
+        }else if (fromIndex > toIndex){
             Song oldSong = songList.get(fromIndex);
             songList.remove(fromIndex);
             songList.add(toIndex, oldSong);
+        }else if(fromIndex < toIndex){
+            Song oldSong = songList.get(fromIndex);
+            songList.remove(fromIndex);
+            songList.add(toIndex, oldSong);
+        } else if (toIndex == songList.size() -1) {
+            Song oldSong = songList.get(fromIndex);
+            songList.add(toIndex, oldSong);
+            songList.remove(fromIndex);
         }
     }
 
@@ -80,7 +90,7 @@ public class PlayList {
     public ArrayList<Song> getMostPlayed(){
         ArrayList<Song> mostPlayedSongs= new ArrayList<>();
         if(songList.size() == 0){
-            throw new IllegalStateException("Add songs to your playlist. Like come on. you cant have a most played song without any songs on the playlist :skull emoji:")
+            throw new IllegalStateException("Add songs to your playlist. Like come on. you cant have a most played song without any songs on the playlist :skull emoji:");
         }else{
             int max = 0;
             for(int i =0; i <songList.size(); i++){
@@ -97,6 +107,43 @@ public class PlayList {
         }
     }
 
+    public void rate(int index, int ratingValue){
+        if(index > this.size()|| index < 0){
+            throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
+        }else if (ratingValue < 0 || ratingValue > 5){
+            throw new RuntimeException("I know you want to rate songs with a rating below zero but and i do too but unfortunately that is not supported");
+        }else{
+            songList.get(index).setRating(ratingValue);
+        }
+    }
+
+    public ArrayList<Song> getFavorite(){
+        ArrayList<Song> mostPlayedSongs= new ArrayList<>();
+        if(songList.size() == 0){
+            throw new IllegalStateException("Add songs to your playlist. Like come on. you cant have a most played song without any songs on the playlist :skull emoji:");
+        }else{
+            int max = 0;
+            for(int i =0; i <songList.size(); i++){
+                if(songList.get(i).getRating() > max){
+                    max = songList.get(i).getRating();
+                }
+            }
+            for(int i = 0; i < songList.size(); i++){
+                if(songList.get(i).getRating() == max){
+                    mostPlayedSongs.add(songList.get(i));
+                }
+            }
+            return mostPlayedSongs;
+        }
+    }
+
+    public double ratePlaylist(){
+        double sum = 0;
+        for(int i =0;i< songList.size(); i++){
+            sum += songList.get(i).getRating();
+        }
+        return sum/(double) songList.size();
+    }
     public void selfDestruct(){
         songList = new ArrayList<>();
     }

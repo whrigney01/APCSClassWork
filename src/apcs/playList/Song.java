@@ -1,12 +1,22 @@
 package apcs.playList;
 
+import javax.print.attribute.standard.Media;
+import java.io.File;
+import javafx.scene.media.MediaPlayer;
+
 public class Song {
     private String songName;
     private int plays;
+    private int rating;
+    private String bip
 
     public Song(String songName){
         this.songName = songName;
         this.plays = 0;
+        this.rating = -1;
+        Media hit = new Media(new File(bip).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        mediaPlayer.play();
     }
 
     public String getSongName() {
@@ -26,7 +36,19 @@ public class Song {
     }
 
     public String toString() {
-        return "Title: " + songName + "; Plays: " + plays;
+        if(rating == -1) {
+            return "Title: " + songName + "; Plays: " + plays + "; Not Rated";
+        }else{
+            return "Title: " + songName + "; Plays: " + plays + "; Rating: " + rating;
+        }
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
 
