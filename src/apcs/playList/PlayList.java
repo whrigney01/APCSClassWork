@@ -2,7 +2,12 @@ package apcs.playList;
 
 import java.util.ArrayList;
 
+
 public class PlayList {
+    //For my extensions I made a method that calculates the average rating of each song in the playlist that then is output as a playlist rating.
+    // I also made a method that can get the artist of any song and set the artist as well as a method to reverse the playlist's order.
+    // I also made methods that allow the user to specify a threshold of either rating or plays that they want a new playlist to be constructed with songs that only have a higher rating or play count that the threshhold.
+    //Finally, I made a self-destruct method that set the songList variable to a new arraylist in case the user really does not like their play list and wants it gone forever.
     private ArrayList<Song> songList;
 
     public PlayList(){
@@ -11,6 +16,10 @@ public class PlayList {
 
     public void add(String songName){
         songList.add(new Song(songName));
+    }
+
+    public void addWithArtist(String songName, String artist){
+        songList.add(new Song(songName, artist));
     }
 
     public int size(){
@@ -151,5 +160,57 @@ public class PlayList {
     @Override
     public String toString() {
         return songList.toString();
+    }
+
+    public String getArtist(int index){
+        if(index < 0 || index >= songList.size()){
+            throw new IndexOutOfBoundsException("There is no song at index " + index);
+        }else {
+            return this.songList.get(index).getArtist();
+        }
+    }
+
+    public void setArtist(int index, String newArtist){
+        if(index < 0 || index >= songList.size()){
+            throw new IndexOutOfBoundsException("There is no song at index " + index);
+        }else {
+            this.songList.get(index).setArtist(newArtist);
+        }
+    }
+
+    public void reverseList(){
+        ArrayList<Song> newSongList = new ArrayList<>();
+        for(int i = songList.size() -1;  i >= 0; i--){
+            newSongList.add(songList.get(i));
+        }
+        songList = newSongList;
+    }
+
+    public ArrayList<Song> extractListByRatings(int threshold){
+        if(threshold >= 0 && threshold <= 5) {
+            ArrayList<Song> thresholdList = new ArrayList<>();
+            for (int i = 0; i < songList.size(); i++) {
+                if (songList.get(i).getRating() >= threshold) {
+                    thresholdList.add(songList.get(i));
+                }
+            }
+            return thresholdList;
+        }else{
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    public ArrayList<Song> extractListByPlays(int threshold){
+        if(threshold >= 0) {
+            ArrayList<Song> thresholdList = new ArrayList<>();
+            for (int i = 0; i < songList.size(); i++) {
+                if (songList.get(i).getPlays() >= threshold) {
+                    thresholdList.add(songList.get(i));
+                }
+            }
+            return thresholdList;
+        }else{
+            throw new IndexOutOfBoundsException();
+        }
     }
 }

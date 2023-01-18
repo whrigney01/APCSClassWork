@@ -1,22 +1,25 @@
 package apcs.playList;
 
-import javax.print.attribute.standard.Media;
-import java.io.File;
-import javafx.scene.media.MediaPlayer;
+
 
 public class Song {
     private String songName;
     private int plays;
     private int rating;
-    private String bip
+    private String artist;
 
     public Song(String songName){
         this.songName = songName;
         this.plays = 0;
         this.rating = -1;
-        Media hit = new Media(new File(bip).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(hit);
-        mediaPlayer.play();
+        this.artist = "";
+    }
+
+    public Song(String songName, String artist){
+        this.songName = songName;
+        this.plays = 0;
+        this.rating = -1;
+        this.artist = artist;
     }
 
     public String getSongName() {
@@ -36,10 +39,18 @@ public class Song {
     }
 
     public String toString() {
-        if(rating == -1) {
-            return "Title: " + songName + "; Plays: " + plays + "; Not Rated";
+        if (artist.equals("")) {
+            if (rating == -1) {
+                return "Title: " + songName + "; Plays: " + plays + "; Not Rated";
+            } else {
+                return "Title: " +  songName + "; Plays: " + plays + "; Rating: " + rating;
+            }
         }else{
-            return "Title: " + songName + "; Plays: " + plays + "; Rating: " + rating;
+            if (rating == -1) {
+                return "Title: " + songName + "'; Artist: " + artist + "; Plays: " + plays + "; Not Rated";
+            } else {
+                return "Title: " +  songName + "; Artist: " + artist + "; Plays: " + plays + "; Rating: " + rating;
+            }
         }
     }
 
@@ -47,8 +58,17 @@ public class Song {
         return rating;
     }
 
+
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 }
 
