@@ -41,15 +41,15 @@ public class Song {
     public String toString() {
         if (artist.equals("")) {
             if (rating == -1) {
-                return "Title: " + songName + "; Plays: " + plays + "; Not Rated";
+                return "\nTitle: " + songName + "; Plays: " + plays + "; Not Rated";
             } else {
-                return "Title: " +  songName + "; Plays: " + plays + "; Rating: " + rating;
+                return "\nTitle: " +  songName + "; Plays: " + plays + "; Rating: " + rating;
             }
         }else{
             if (rating == -1) {
-                return "Title: " + songName + "'; Artist: " + artist + "; Plays: " + plays + "; Not Rated";
+                return "\nTitle: " + songName + "'; Artist: " + artist + "; Plays: " + plays + "; Rating: Not Rated";
             } else {
-                return "Title: " +  songName + "; Artist: " + artist + "; Plays: " + plays + "; Rating: " + rating;
+                return "\nTitle: " +  songName + "; Artist: " + artist + "; Plays: " + plays + "; Rating: " + rating;
             }
         }
     }

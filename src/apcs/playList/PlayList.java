@@ -28,7 +28,7 @@ public class PlayList {
 
     public String getSong(int index){
         if(index >= songList.size() || index < 0){
-            throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
+            throw new IndexOutOfBoundsException("There are not that many songs in the playlist. Please enter a different number that is less than the total amount of songs on the playlist.");
         }else{
             return songList.get(index).getSongName();
         }
@@ -36,7 +36,7 @@ public class PlayList {
 
     public void play(int index){
         if(index >= songList.size() || index < 0){
-            throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
+            throw new IndexOutOfBoundsException("There are not that many songs in the playlist. Please enter a different number that is less than the total amount of songs on the playlist.");
         }else{
             songList.get(index).setPlays(songList.get(index).getPlays() + 1);
             System.out.println(songList.get(index).toString());
@@ -53,7 +53,7 @@ public class PlayList {
 
     public void remove(int index){
         if(index >= songList.size() || index < 0){
-            throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
+            throw new IndexOutOfBoundsException("There are not that many songs in the playlist. Please enter a different number that is less than the total amount of songs on the playlist.");
         }else{
             songList.remove(index);
         }
@@ -62,7 +62,7 @@ public class PlayList {
 
     public void insert(int index, String songName){
         if(index < 0 || index > songList.size()){
-            throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
+            throw new IndexOutOfBoundsException("There are not that many songs in the playlist. Please enter a different number that is less than the total amount of songs on the playlist.");
         }else{
             songList.add(index, new Song(songName));
         }
@@ -71,7 +71,7 @@ public class PlayList {
     public void move(int fromIndex, int toIndex){
 
         if(fromIndex < 0 || fromIndex >= songList.size() || toIndex < 0 || toIndex >= songList.size()){
-            throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
+            throw new IndexOutOfBoundsException("There are not that many songs in the playlist. Please enter a different number that is less than the total amount of songs on the playlist.");
         }else if (fromIndex > toIndex){
             Song oldSong = songList.get(fromIndex);
             songList.remove(fromIndex);
@@ -99,7 +99,7 @@ public class PlayList {
     public ArrayList<Song> getMostPlayed(){
         ArrayList<Song> mostPlayedSongs= new ArrayList<>();
         if(songList.size() == 0){
-            throw new IllegalStateException("Add songs to your playlist. Like come on. you cant have a most played song without any songs on the playlist :skull emoji:");
+            throw new IllegalStateException("There are no songs on the playlist. Add songs to the playlist to find a most played");
         }else{
             int max = 0;
             for(int i =0; i <songList.size(); i++){
@@ -117,10 +117,10 @@ public class PlayList {
     }
 
     public void rate(int index, int ratingValue){
-        if(index > this.size()|| index < 0){
-            throw new IndexOutOfBoundsException("You don't know the number of songs in your own playlist minus 1. shaking shaking smh my head my head. Enter an index that exists please");
-        }else if (ratingValue < 0 || ratingValue > 5){
-            throw new RuntimeException("I know you want to rate songs with a rating below zero but and i do too but unfortunately that is not supported");
+        if(index >= this.size() || index < 0){
+            throw new IndexOutOfBoundsException("There are not that many songs in the playlist. Please enter a different number that is less than the total amount of songs on the playlist.");
+        }else if (ratingValue < 1 || ratingValue > 5){
+            throw new RuntimeException("Please enter a rating that is between 1 and 5");
         }else{
             songList.get(index).setRating(ratingValue);
         }
@@ -129,7 +129,7 @@ public class PlayList {
     public ArrayList<Song> getFavorite(){
         ArrayList<Song> mostPlayedSongs= new ArrayList<>();
         if(songList.size() == 0){
-            throw new IllegalStateException("Add songs to your playlist. Like come on. you cant have a most played song without any songs on the playlist :skull emoji:");
+            throw new IllegalStateException("Please add songs to your playlist before trying to get a favorite");
         }else{
             int max = 0;
             for(int i =0; i <songList.size(); i++){
