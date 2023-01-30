@@ -7,7 +7,13 @@ import info.gridworld.actor.Rock;
 import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
 
+import java.awt.*;
+
 public class Jumper extends Bug {
+
+    public Jumper(){
+        this.setColor(Color.GREEN);
+    }
     public void act(){
         Location loc = this.getLocation();
         int direct = this.getDirection();

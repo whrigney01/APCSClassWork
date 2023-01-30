@@ -19,8 +19,8 @@ public class JumperRunner {
         world.add(new Location(0, 6), flower);
         world.add(new Location(0,8), rock);
         world.add(new Location(6, 11), bug);
-        ArrayList<Location> rockLocs = new ArrayList<>();
-        for(int i = 0; i<100; i++){
+
+        for(int i = 0; i<40; i++){
             loc = new Location((int)(Math.random()*20),(int)(Math.random()*40));
             if(loc.equals(new Location(1,1))){
                 loc = new Location((int)(Math.random()*20)+1,(int)(Math.random()*40)+1);
@@ -28,6 +28,21 @@ public class JumperRunner {
             world.add(loc,new Rock());
         }
 
+        for(int i = 0; i<10; i++){
+            loc = new Location((int)(Math.random()*20),(int)(Math.random()*40));
+            if(loc.equals(new Location(1,1))){
+                loc = new Location((int)(Math.random()*20)+1,(int)(Math.random()*40)+1);
+            }
+            world.add(loc,new Bug());
+        }
+
+        for(int i = 0; i<40; i++){
+            loc = new Location((int)(Math.random()*20),(int)(Math.random()*40));
+            if(loc.equals(new Location(1,1))){
+                loc = new Location((int)(Math.random()*20)+1,(int)(Math.random()*40)+1);
+            }
+            world.add(loc,new Flower());
+        }
         world.show();
     }
 }
