@@ -16,14 +16,14 @@ public class LifeRunner {
         ActorWorld world = new ActorWorld(gr);
         File file = new File("C:\\Users\\willi\\IdeaProjects\\apcs-whrigney01\\src\\apcs\\life\\InitialCellPlacement");
         try{
-            Scanner scanner = new Scanner(file);
-            while(scanner.hasNextLine()) {
-                if (scanner.hasNextInt()) {
-                    int num1 = scanner.nextInt();
-                    int num2 = scanner.nextInt();
+            Scanner reader = new Scanner(file);
+            while(reader.hasNextLine()) {
+                if (reader.hasNextInt()) {
+                    int num1 = reader.nextInt();
+                    int num2 = reader.nextInt();
                     world.add(new Location(num1, num2), new Cell());
                 }else{
-                    String temp = scanner.nextLine();
+                    String temp = reader.nextLine();
                 }
             }
         }catch (FileNotFoundException e) {

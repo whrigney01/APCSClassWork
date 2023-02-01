@@ -34,7 +34,8 @@ public class Cell extends Actor {
         Grid<Actor> gr = this.getGrid();
 
         if (gr.getNeighbors(this.getLocation()).size() == 2 || gr.getNeighbors(this.getLocation()).size() == 3) {
-            isDied = false;
+                isDied = false;
+
         } else {
             isDied = true;
         }
@@ -49,7 +50,10 @@ public class Cell extends Actor {
     public void phase2() {
         Grid<Actor> gr = this.getGrid();
         if (this.isDied) {
-            this.removeSelfFromGrid();
+            //This is the mutation code but I wanted to see glider gun so commented out
+//            if((int)(Math.random() * 200) != 1) {
+                this.removeSelfFromGrid();
+//            }
         }
         for (int i = 0; i < newLocs.size(); i++) {
             if (!(gr.get(newLocs.get(i)) instanceof Cell)) {
