@@ -1,4 +1,7 @@
 //Extension: Created a way to enter cords in a txt file that then will be placed on the grid. This code also ignores any not int characters that will cause an error.
+//I created a simple if statement that has a 0.5% chance to not kill the cell when the cell is supposed to die (commented out currently for testing with glider gun).
+//I also created a way to specify birth/life/death rules through a scanner that defaults to the default rules.
+
 
 package apcs.life;
 
@@ -12,12 +15,27 @@ import java.util.ArrayList;
 
 public class Cell extends Actor {
     private int phase;
+    private int birthRule;
+    private int liveRule;
+    private int liveRule2;
     private boolean isDied;
     private ArrayList<Location> newLocs;
 
-    public Cell() {
+    public Cell(int birthRule, int liveRule, int liveRule2) {
         phase = 1;
         newLocs = new ArrayList<>();
+        this.setColor(Color.GRAY);
+        this.birthRule = birthRule;
+        this.liveRule2 = liveRule2;
+        this.liveRule = liveRule;
+    }
+    public Cell(){
+        phase = 1;
+        newLocs = new ArrayList<>();
+        this.setColor(Color.GRAY);
+        this.birthRule = 3;
+        this.liveRule2 = 2;
+        this.liveRule = 3;
     }
 
     public void act() {
@@ -32,16 +50,17 @@ public class Cell extends Actor {
 
     public void phase1() {
         Grid<Actor> gr = this.getGrid();
+        Location loc = this.getLocation();
 
-        if (gr.getNeighbors(this.getLocation()).size() == 2 || gr.getNeighbors(this.getLocation()).size() == 3) {
+        if (gr.getNeighbors(loc).size() == liveRule || gr.getNeighbors(loc).size() == liveRule2) {
                 isDied = false;
 
         } else {
             isDied = true;
         }
-        ArrayList<Location> emptyLocs = gr.getEmptyAdjacentLocations(this.getLocation());
+        ArrayList<Location> emptyLocs = gr.getEmptyAdjacentLocations(loc);
         for (int i = 0; i < emptyLocs.size(); i++) {
-            if (gr.getNeighbors(emptyLocs.get(i)).size() == 3) {
+            if (gr.getNeighbors(emptyLocs.get(i)).size() == birthRule) {
                 newLocs.add(emptyLocs.get(i));
             }
         }
@@ -49,6 +68,7 @@ public class Cell extends Actor {
 
     public void phase2() {
         Grid<Actor> gr = this.getGrid();
+        Location loc = this.getLocation();
         if (this.isDied) {
             //This is the mutation code but I wanted to see glider gun so commented out
 //            if((int)(Math.random() * 200) != 1) {
@@ -57,7 +77,7 @@ public class Cell extends Actor {
         }
         for (int i = 0; i < newLocs.size(); i++) {
             if (!(gr.get(newLocs.get(i)) instanceof Cell)) {
-                Cell c = new Cell();
+                Cell c = new Cell(birthRule, liveRule, liveRule2);
                 c.putSelfInGrid(gr, newLocs.get(i));
             }
         }

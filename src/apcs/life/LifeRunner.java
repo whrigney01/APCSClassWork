@@ -10,20 +10,33 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LifeRunner {
-
     public static void main(String[] args) {
+        int live = 2;
+        int live2 = 3;
+        int birth = 3;
+        Scanner reader = new Scanner(System.in);
         UnboundedGrid<Actor> gr = new UnboundedGrid<Actor>();
         ActorWorld world = new ActorWorld(gr);
-        File file = new File("C:\\Users\\willi\\IdeaProjects\\apcs-whrigney01\\src\\apcs\\life\\InitialCellPlacement");
+        System.out.print("Do you want enter custom Live/Birth/Death rules? (y/n): ");
+        String ans = reader.nextLine();
+        if(ans.equals("y")){
+            System.out.print("How many cells should be around the space where a new cell is born?: ");
+            birth = reader.nextInt();
+            System.out.print("How many cells should be around a cell that lives? (Value 1/2): ");
+            live = reader.nextInt();
+            System.out.print("How many cells should be around a cell that lives? (Value 2/2): ");
+            live2= reader.nextInt();
+        }
+        File file = new File("InitialCellPlacement");
         try{
-            Scanner reader = new Scanner(file);
-            while(reader.hasNextLine()) {
-                if (reader.hasNextInt()) {
-                    int num1 = reader.nextInt();
-                    int num2 = reader.nextInt();
-                    world.add(new Location(num1, num2), new Cell());
+            Scanner scanner = new Scanner(file);
+            while(scanner.hasNextLine()) {
+                if (scanner.hasNextInt()) {
+                    int num1 = scanner.nextInt();
+                    int num2 = scanner.nextInt();
+                    world.add(new Location(num1, num2), new Cell(birth, live, live2));
                 }else{
-                    String temp = reader.nextLine();
+                    String temp = scanner.nextLine();
                 }
             }
         }catch (FileNotFoundException e) {

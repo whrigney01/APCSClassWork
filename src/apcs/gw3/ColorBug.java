@@ -24,7 +24,6 @@ public class ColorBug extends Bug {
         ArrayList<Location> emptyAdj= gr.getEmptyAdjacentLocations(loc);
         if(emptyAdj .size()!= 0) {
             int randNum = (int) (Math.random() * emptyAdj.size());
-            System.out.println(randNum);
             Location newLoc = emptyAdj.get(randNum);
             int direct = loc.getDirectionToward(newLoc);
             this.setDirection(direct);
