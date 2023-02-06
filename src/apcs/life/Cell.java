@@ -1,6 +1,10 @@
 //Extension: Created a way to enter cords in a txt file that then will be placed on the grid. This code also ignores any not int characters that will cause an error.
+//This extends my knowledge because I had to place the actor at a specific location on the grid based on the user input.
 //I created a simple if statement that has a 0.5% chance to not kill the cell when the cell is supposed to die (commented out currently for testing with glider gun).
+//This exteneds my knowledge by me having to know what lines of code kill the cell and how to use the Math java class to make it have a chance to live
 //I also created a way to specify birth/life/death rules through a scanner that defaults to the default rules.
+//This extends my knowledge of gridWorld by knowing where to put the specific birth life and death rules to make it so they actually affect the outcome of the cell. 
+//It also extends my knowledge of the scanner class and class building by making instance variables and setting them in a constructor to affect the cell. 
 
 
 package apcs.life;
