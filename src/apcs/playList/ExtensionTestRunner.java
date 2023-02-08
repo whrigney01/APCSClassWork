@@ -4,7 +4,14 @@ package apcs.playList;
 import java.util.Scanner;
 
 public class ExtensionTestRunner {
-    public static void main(String[] args) {
+    //For my extensions I made a method that calculates the average rating of each song in the playlist that then is output as a playlist rating This shows mastery because it uses more loops to go through each song in the arrayList and then calculates an average rating.
+    // I also made a method that can get and set the artist of any song. This shows mastery by using more ArrayList methods as well as creating custom methods to get and set the artist.
+    // I also made a method to reverse the playlist's order which demonstrates mastery by using for loops to loop through the arrayList and then add it to a new list and set that as the songList.
+    // I also made methods that allow the user to specify a threshold of either rating or plays that they want a new playlist to be constructed with songs that only have a higher rating or play count that the threshold.
+    //This shows mastery by using loops and if statements to add songs to a new arrayList and then return that list
+    //Finally, I made a self-destruct method that set the songList variable to a new arraylist in case the user really does not like their play list and wants it gone forever.
+    //This really doesn't show mastery, but I wanted to make. all it does is set the songList variable to a blank arrayList
+        public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
 
 

@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 
 public class PlayList {
-    //For my extensions I made a method that calculates the average rating of each song in the playlist that then is output as a playlist rating.
-    // I also made a method that can get the artist of any song and set the artist as well as a method to reverse the playlist's order.
-    // I also made methods that allow the user to specify a threshold of either rating or plays that they want a new playlist to be constructed with songs that only have a higher rating or play count that the threshhold.
-    //Finally, I made a self-destruct method that set the songList variable to a new arraylist in case the user really does not like their play list and wants it gone forever.
+
     private ArrayList<Song> songList;
 
     public PlayList(){
