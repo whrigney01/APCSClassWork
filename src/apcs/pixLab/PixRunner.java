@@ -43,6 +43,17 @@ public class PixRunner {
 
         Image i = new Image("p2p.jpg");
         i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
+        i.blur();
         i.display("P2P but blurred");
 
     }
