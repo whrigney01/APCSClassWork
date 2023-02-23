@@ -42,19 +42,15 @@ public class PixRunner {
         h.display("P2P but flipped horizontally");
 
         Image i = new Image("p2p.jpg");
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-//        i.blur();
-        i.display("P2P but blurred");
+        for (int j = 0; j < 20;            j++) {
+            i.blur();
+        }
+
+        i.display("P2P but blured ");
+
+        Image j = new Image("p2p.jpg");
+        j.darken();
+        j.display("P2P but darkened ");
 
 
     }
