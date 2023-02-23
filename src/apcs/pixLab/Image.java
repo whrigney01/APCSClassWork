@@ -11,7 +11,7 @@ public class Image {
     /*
      * Instance variables: image - a 2D Array of Colors
      */
-    private Color[][] image;
+    private static Color[][] image;
     /**
      * Creates a new Image based on an existing 2D array of colors
      * @param image the array of Colors
@@ -180,23 +180,51 @@ public class Image {
     }
 
     public void blur(){
-        for (int r = 1; r < image.length - 1; r++) {
-            for (int c = 1; c < image[r].length - 1; c++) {
+        for (int r = 0; r < image.length; r++) {
+            for (int c = 0; c < image[r].length; c++) {
                 int totalr = 0;
                 int totalg = 0;
                 int totalb = 0;
                 Color pixel = image[r][c];
 
-
-                for(int r1 = r - 1; r1 <= r + 1; r1++){
-                    for(int c1 = c - 1; c1 <= c + 1; c1++){
-                        Color pixel1 = image[r1][c1];
-                        totalr += pixel1.getRed();
-                        totalg += pixel1.getGreen ();
-                        totalb += pixel1.getBlue ();
-                    }
+                if (c == 0 && r == 0) {
+                    int[] colors = Image.forLoopBlur(r, c, 0, 1, 0, 1);
+                    totalr += colors[0];
+                    totalg += colors[1];
+                    totalb += colors[2];
+                } else if (c == 0 && r == image.length - 1) {
+                    int[] colors = Image.forLoopBlur(r, c, 1, 0, 0, 1);
+                    totalr += colors[0];
+                    totalg += colors[1];
+                    totalb += colors[2];
+                }else if(c == image[r].length - 1 &r == 0){
+                    int[] colors = Image.forLoopBlur(r, c, 0, 1, 1,0);
+                    totalr += colors[0];
+                    totalg += colors[1];
+                    totalb += colors[2];
+                }else if (c == 0) {
+                    int[] colors = Image.forLoopBlur(r, c, 1, 1, 0, 1);
+                    totalr += colors[0];
+                    totalg += colors[1];
+                    totalb += colors[2];
+                } else if (c == image[r].length - 1) {
+                    int[] colors = Image.forLoopBlur(r, c, 1, 1, 1, 0);
+                    totalr += colors[0];
+                    totalg += colors[1];
+                    totalb += colors[2];
+                } else if (r == 0) {
+                    int[] colors = Image.forLoopBlur(r, c, 0, 1, 1, 1);
+                    totalr += colors[0];
+                    totalg += colors[1];
+                    totalb += colors[2];
+                } else if (r == image.length - 1){
+                    int[] colors = Image.forLoopBlur(r, c, 1, 0, 1, 1);
+                    totalr += colors[0];
+                    totalg += colors[1];
+                    totalb += colors[2];
+                }else {
+                    System.out.println("Help Me what is happening i dont know aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 }
-
                 totalr /= 9;
                 totalg /= 9;
                 totalb /= 9;
@@ -208,4 +236,22 @@ public class Image {
         }
     }
 
+    public static int[] forLoopBlur(int r, int c, int numFromRNeg, int numFromRPos, int numFromCNeg, int numFromCPos){
+        int [] returnNums = new int[3];
+
+
+        for(int r1 = r - numFromRNeg; r1 <= r + numFromRPos; r1++){
+            for(int c1 = c - numFromCNeg; c1 <= c + numFromCPos; c1++){
+                Color pixel = image[r1][c1];
+                returnNums[0] = pixel.getRed();
+                returnNums[1] = pixel.getGreen ();
+                returnNums[2] = pixel.getBlue ();
+            }
+        }
+
+        return returnNums;
+    }
+
 }
+
+
