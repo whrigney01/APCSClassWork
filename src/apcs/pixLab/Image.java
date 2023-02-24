@@ -197,8 +197,8 @@ public class Image {
                 int numPix = 0;
 
 
-                for (int r1 = r - 1; r1 < r + 1; r1++) {
-                    for (int c1 = c - 1; c1 < c + 1; c1++) {
+                for (int r1 = r - 1; r1 <= r + 1; r1++) {
+                    for (int c1 = c - 1; c1 <= c + 1; c1++) {
                         if (!(r1 < 0 || r1 > image.length - 1 || c1 < 0 || c1 > image[r1].length - 1)) {
                             numPix++;
                             totalR += image[r1][c1].getRed();
@@ -321,45 +321,59 @@ public class Image {
         return returnNums;
     }
 
-    public void sharpen(){
+    public void sharpen() {
         Color[][] sharpnessIsCool = new Color[image.length][image[0].length];
-        for(int r = 0; r < image.length; r++ ){
-            for(int c= 0; c < image[r].length; c++){
-                int totalR = 0;
-                int totalG = 0;
-                int totalB = 0;
-                int numPix = 0;
-
-
-                for (int r1 = r - 1; r1 < r + 1; r1++) {
-                    for (int c1 = c - 1; c1 < c + 1; c1++) {
+        for (int r = 0; r < image.length; r++) {
+            for (int c = 0; c < image[r].length; c++) {
+                Color pixel = image[r][c];
+                int endR = pixel.getRed() * 9;
+                int endB = pixel.getBlue() * 9;
+                int endG = pixel.getGreen() * 9;
+                int gToRemove = -1 * pixel.getGreen();
+                int bToRemove = -1 * pixel.getBlue();
+                int rToRemove = -1 * pixel.getRed();
+                //loop through pixels around main pix
+                for (int r1 = r - 1; r1 <= r + 1; r1++) {
+                    for (int c1 = c - 1; c1 <= c + 1; c1++) {
                         if (!(r1 < 0 || r1 > image.length - 1 || c1 < 0 || c1 > image[r1].length - 1)) {
-                            numPix++;
-                            totalR += image[r1][c1].getRed();
-                            totalG += image[r1][c1].getGreen();
-                            totalB += image[r1][c1].getBlue();
+                            Color adjPix = image[r1][c1];
+                            gToRemove += adjPix.getGreen();
+                            bToRemove += adjPix.getBlue();
+                            rToRemove += adjPix.getRed();
                         }
                     }
-
-
                 }
-                totalR /= numPix;
-                totalG /= numPix;
-                totalB /= numPix;
-                sharpnessIsCool[r][c] = new Color(totalR, totalG, totalB);
+                endR -= rToRemove;
+                endB -= bToRemove;
+                endG -= gToRemove;
+                if (endR > 255) {
+                    endR = 255;
+                } else if (endR < 0) {
+                    endR = 0;
+                }
+                if (endB > 255) {
+                    endB = 255;
+                } else if (endB < 0) {
+                    endB = 0;
+                }
+                if (endG > 255) {
+                    endG = 255;
+                } else if (endG < 0) {
+                    endG = 0;
+                }
+
+                sharpnessIsCool[r][c] = new Color(endR, endG, endB);
+
             }
+
 
         }
         for (int i = 0; i < image.length; i++) {
             for (int j = 0; j < image[i].length; j++) {
                 image[i][j] = sharpnessIsCool[i][j];
             }
-
-
-            }
         }
     }
-
 }
 
 

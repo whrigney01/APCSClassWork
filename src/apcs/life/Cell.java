@@ -68,7 +68,7 @@ public class Cell extends Actor {
         Grid<Actor> gr = this.getGrid();
         Location loc = this.getLocation();
         if (this.isDied) {
-            //This is the mutation code but I wanted to see glider gun so commented out
+            //This is the mutation code, but I wanted to see glider gun so commented out
 //            if((int)(Math.random() * 200) != 1) {
                 this.removeSelfFromGrid();
 //            }

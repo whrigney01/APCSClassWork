@@ -52,6 +52,11 @@ public class PixRunner {
         j.darken();
         j.display("P2P but darkened ");
 
+        Image k = new Image("p2p.jpg");
+        j.blur();
+        j.sharpen();
+        j.display("P2P but sharpened after blur");
+
 
     }
 
