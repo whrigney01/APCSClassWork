@@ -223,157 +223,55 @@ public class Image {
         }
     }
 
-    public void darken() {
-        Color[][] newImage = new Color[image.length][image[0].length];
-        for (int r = 0; r < image.length; r++) {
-            for (int c = 0; c < image[r].length; c++) {
-                int totalr = 0;
-                int totalg = 0;
-                int totalb = 0;
-                int divisor;
+    public void darken(int amount) {
+        for(int r = 0; r < image.length; r++){
+            for(int c = 0; c < image[r].length; c++){
                 Color pixel = image[r][c];
-
-                if (c == 0 && r == 0) {
-                    int[] colors = Image.forLoopBlur(r, c, 0, 1, 0, 1);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 4;
-                } else if (c == 0 && r == image.length - 1) {
-                    int[] colors = Image.forLoopBlur(r, c, 1, 0, 0, 1);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 4;
-                } else if (c == image[r].length - 1 & r == 0) {
-                    int[] colors = Image.forLoopBlur(r, c, 0, 1, 1, 0);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 4;
-                } else if (c == image[r].length - 1 && r == image.length - 1) {
-                    int[] colors = Image.forLoopBlur(r, c, 1, 0, 1, 0);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 4;
-                } else if (c == 0) {
-                    int[] colors = Image.forLoopBlur(r, c, 1, 1, 0, 1);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 6;
-                } else if (c == image[r].length - 1) {
-                    int[] colors = Image.forLoopBlur(r, c, 1, 1, 1, 0);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 6;
-                } else if (r == 0) {
-                    int[] colors = Image.forLoopBlur(r, c, 0, 1, 1, 1);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 6;
-                } else if (r == image.length - 1) {
-                    int[] colors = Image.forLoopBlur(r, c, 1, 0, 1, 1);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 6;
-                } else {
-                    int[] colors = Image.forLoopBlur(r, c, 1, 1, 1, 1);
-                    totalr += colors[0];
-                    totalg += colors[1];
-                    totalb += colors[2];
-                    divisor = 9;
-                }
-                totalr /= 3;
-                totalg /= 3;
-                totalb /= 3;
-
-                newImage[r][c] = new Color(totalr, totalg, totalb);
-
-
+                image[r][c] = new Color(pixel.getRed() / amount, pixel.getGreen()/amount, pixel.getBlue()/ amount);
             }
-
         }
+    }
+
+    public void lighten(int amount){
+        for(int r = 0; r < image.length; r++){
+            for(int c = 0; c < image[r].length; c++){
+                Color pixel = image[r][c];
+                int newRed = pixel.getRed() * 3;
+                int newBlue = pixel.getBlue() * 3;
+                int newGreen = pixel.getGreen() * 3;
+                if(newRed >= 255){
+                    newRed = 255;
+                }
+                if(newBlue >= 255){
+                    newBlue = 255;
+                }
+                if(newGreen >= 255){
+                    newGreen = 255;
+                }
+                image[r][c] = new Color(newRed, newGreen, newBlue);
+            }
+        }
+    }
+
+    public void blend(Color[][] image2){
+        Color [][] combinedImage = new Color[image.length][image[0].length];
+
+        for(int r = 0; r < combinedImage.length; r++){
+            for(int c = 0; c < combinedImage[r].length; c++){
+                Color pixel = image[r][c];
+                Color pixel2 = image2[r][c];
+                combinedImage[r][c] = new Color((pixel.getRed() + pixel2.getRed()) / 2, (pixel.getGreen() + pixel2.getGreen()) / 2, (pixel.getBlue() + pixel2.getBlue()) / 2);
+            }
+        }
+
         for (int i = 0; i < image.length; i++) {
             for (int j = 0; j < image[i].length; j++) {
-                image[i][j] = newImage[i][j];
+                image[i][j] = combinedImage[i][j];
             }
         }
+
     }
 
-    public static int[] forLoopBlur(int r, int c, int numFromRNeg, int numFromRPos, int numFromCNeg, int numFromCPos) {
-        int[] returnNums = new int[3];
-
-
-        for (int r1 = r - numFromRNeg; r1 <= r + numFromRPos; r1++) {
-            for (int c1 = c - numFromCNeg; c1 <= c + numFromCPos; c1++) {
-                Color pixel = image[r1][c1];
-                returnNums[0] = pixel.getRed();
-                returnNums[1] = pixel.getGreen();
-                returnNums[2] = pixel.getBlue();
-            }
-        }
-
-        return returnNums;
-    }
-
-    public void sharpen() {
-        Color[][] sharpnessIsCool = new Color[image.length][image[0].length];
-        for (int r = 0; r < image.length; r++) {
-            for (int c = 0; c < image[r].length; c++) {
-                Color pixel = image[r][c];
-                int endR = pixel.getRed() * 9;
-                int endB = pixel.getBlue() * 9;
-                int endG = pixel.getGreen() * 9;
-                int gToRemove = -1 * pixel.getGreen();
-                int bToRemove = -1 * pixel.getBlue();
-                int rToRemove = -1 * pixel.getRed();
-                //loop through pixels around main pix
-                for (int r1 = r - 1; r1 <= r + 1; r1++) {
-                    for (int c1 = c - 1; c1 <= c + 1; c1++) {
-                        if (!(r1 < 0 || r1 > image.length - 1 || c1 < 0 || c1 > image[r1].length - 1)) {
-                            Color adjPix = image[r1][c1];
-                            gToRemove += adjPix.getGreen();
-                            bToRemove += adjPix.getBlue();
-                            rToRemove += adjPix.getRed();
-                        }
-                    }
-                }
-                endR -= rToRemove;
-                endB -= bToRemove;
-                endG -= gToRemove;
-                if (endR > 255) {
-                    endR = 255;
-                } else if (endR < 0) {
-                    endR = 0;
-                }
-                if (endB > 255) {
-                    endB = 255;
-                } else if (endB < 0) {
-                    endB = 0;
-                }
-                if (endG > 255) {
-                    endG = 255;
-                } else if (endG < 0) {
-                    endG = 0;
-                }
-
-                sharpnessIsCool[r][c] = new Color(endR, endG, endB);
-
-            }
-
-
-        }
-        for (int i = 0; i < image.length; i++) {
-            for (int j = 0; j < image[i].length; j++) {
-                image[i][j] = sharpnessIsCool[i][j];
-            }
-        }
-    }
 }
 
 
