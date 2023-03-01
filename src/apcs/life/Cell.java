@@ -12,12 +12,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Cell extends Actor {
+    private static int cellCount = 0;
     private int phase;
     private int birthRule;
     private int liveRule;
     private int liveRule2;
     private boolean isDied;
     private ArrayList<Location> newLocs;
+
 
     public Cell(int birthRule, int liveRule, int liveRule2) {
         phase = 1;
@@ -37,6 +39,7 @@ public class Cell extends Actor {
     }
 
     public void act() {
+
         if (this.phase == 1) {
             this.phase1();
             this.phase = 2;
@@ -77,9 +80,37 @@ public class Cell extends Actor {
             if (!(gr.get(newLocs.get(i)) instanceof Cell)) {
                 Cell c = new Cell(birthRule, liveRule, liveRule2);
                 c.putSelfInGrid(gr, newLocs.get(i));
+
             }
         }
         newLocs = new ArrayList<>();
     }
+    public void putSelfInGrid(Grid<Actor> gr, Location loc){
+        Cell.incCellCount();
+        LifeRunner.updateMessage();
+        System.out.println("Cells: " + Cell.getCellCount());
+        super.putSelfInGrid(gr, loc);
+    }
+
+    public void removeSelfFromGrid(){
+        Cell.decCellCount();
+        LifeRunner.updateMessage();
+        System.out.println("Cells: "+ Cell.getCellCount());
+        super.removeSelfFromGrid();
+    }
+
+    public static int getCellCount(){
+        return Cell.cellCount;
+    }
+
+    public static void incCellCount(){
+        Cell.cellCount++;
+    }
+
+    public static void decCellCount(){
+        Cell.cellCount--;
+    }
+
+
 }
 
