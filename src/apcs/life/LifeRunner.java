@@ -30,8 +30,8 @@ public class LifeRunner {
         int birth = 3;
         Scanner reader = new Scanner(System.in);
         UnboundedGrid<Actor> gr = new UnboundedGrid<Actor>();
-         LifeRunner.world = new ActorWorld(gr);
-         LifeRunner.world.setMessage("Welcome to Life!");
+        LifeRunner.world = new ActorWorld(gr);
+        world.setMessage("Welcome to Life!");
         System.out.print("Do you want enter custom Live/Birth/Death rules? (y/n): ");
         String ans = reader.nextLine();
         if(ans.equals("y")){

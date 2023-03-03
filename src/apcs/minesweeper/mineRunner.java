@@ -6,10 +6,8 @@ import java.awt.*;
 
 public class mineRunner {
     static JFrame frame;
-    static JPanel textPanel;
     static JPanel buttonPanel;
     static JButton[][] buttons;
-    static JLabel textField;
     static int size;
     static Game game;
 
@@ -19,19 +17,9 @@ public class mineRunner {
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
 
-        textPanel = new JPanel();
-        textPanel.setVisible(true);
-        textPanel.setBackground(Color.WHITE);
-
         buttonPanel = new JPanel();
         buttonPanel.setVisible(true);
         buttonPanel.setLayout(new GridLayout(size, size));
-
-        textField = new JLabel();
-        textField.setHorizontalAlignment(JLabel.CENTER);
-        textField.setFont(new Font("monospace", Font.BOLD, 34));
-        textField.setForeground(Color.BLACK);
-        textField.setText(mineRunner.game.getNumBomb() + " Bombs");
 
         buttons = new JButton[size][size];
         for (int i = 0; i < buttons.length; i++) {
@@ -44,8 +32,6 @@ public class mineRunner {
             }
         }
 
-        textPanel.add(textField);
-        frame.add(textPanel, BorderLayout.NORTH);
         frame.add(buttonPanel);
 
         frame.setSize(570, 570);
@@ -67,9 +53,7 @@ public class mineRunner {
                 buttons[i][j].setText(Game.board[i][j].toString());
             }
         }
-//        game.leftClick(0, 0);
-//        game.rightClick(1, 1);
-//        game.printBoard();
+
 
     }
 }
