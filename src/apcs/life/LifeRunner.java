@@ -19,13 +19,19 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LifeRunner {
+    public static ActorWorld world;
+
+    public static void updateMessage(){
+        world.setMessage("Total Cells: " + Cell.getCellCount());
+    }
     public static void main(String[] args) {
         int live = 2;
         int live2 = 3;
         int birth = 3;
         Scanner reader = new Scanner(System.in);
         UnboundedGrid<Actor> gr = new UnboundedGrid<Actor>();
-        ActorWorld world = new ActorWorld(gr);
+         LifeRunner.world = new ActorWorld(gr);
+         LifeRunner.world.setMessage("Welcome to Life!");
         System.out.print("Do you want enter custom Live/Birth/Death rules? (y/n): ");
         String ans = reader.nextLine();
         if(ans.equals("y")){

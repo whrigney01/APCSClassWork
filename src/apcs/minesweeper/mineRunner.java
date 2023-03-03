@@ -1,38 +1,75 @@
 package apcs.minesweeper;
 
-import apcs.pixLab.ImageGUI;
-
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+
 public class mineRunner {
-    public static void display (String title) {
+    static JFrame frame;
+    static JPanel textPanel;
+    static JPanel buttonPanel;
+    static JButton[][] buttons;
+    static JLabel textField;
+    static int size;
+    static Game game;
 
-        // duplicate pixel data to instance variable
+    public static void display(String title) {
+        mineRunner.frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setLayout(new BorderLayout());
 
-        // create a JFrame to display the image in
-        JFrame theGUI = new JFrame();
+        textPanel = new JPanel();
+        textPanel.setVisible(true);
+        textPanel.setBackground(Color.WHITE);
 
-        int height = 500;
-        int width = 500;
+        buttonPanel = new JPanel();
+        buttonPanel.setVisible(true);
+        buttonPanel.setLayout(new GridLayout(size, size));
 
-        theGUI.setTitle(title);
-        theGUI.setSize(width, height);
-        theGUI.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        textField = new JLabel();
+        textField.setHorizontalAlignment(JLabel.CENTER);
+        textField.setFont(new Font("monospace", Font.BOLD, 34));
+        textField.setForeground(Color.BLACK);
+        textField.setText(mineRunner.game.getNumBomb() + " Bombs");
 
-        // create a custom ColorPanel to insert the image into a single-paned JFrame
+        buttons = new JButton[size][size];
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
+                buttons[i][j] = new JButton();
+                buttons[i][j].setFocusable(false);
+                buttons[i][j].setFont(new Font("monospace", Font.BOLD, 12));
+                buttons[i][j].setText("");
+                buttonPanel.add(buttons[i][j]);
+            }
+        }
 
-        // view the JFrame
-        theGUI.setVisible(true);
+        textPanel.add(textField);
+        frame.add(textPanel, BorderLayout.NORTH);
+        frame.add(buttonPanel);
+
+        frame.setSize(570, 570);
+        frame.revalidate();
+        frame.setLocationRelativeTo(null);
+
+
+
     }
 
     public static void main(String[] args) {
-        Game game = new Game(9, 9);
-        game.makeBoard();
-        game.printBoard();
-        game.click(0,0);
+        mineRunner.size = 9;
+        game = new Game(size, size);
 
-        game.printBoard();
         mineRunner.display("Minesweeper");
+        game.makeBoard();
+        for (int i = 0; i < Game.board.length; i++) {
+            for (int j = 0; j < Game.board[i].length; j++) {
+                buttons[i][j].setText(Game.board[i][j].toString());
+            }
+        }
+//        game.leftClick(0, 0);
+//        game.rightClick(1, 1);
+//        game.printBoard();
 
     }
 }

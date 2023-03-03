@@ -3,7 +3,8 @@ package apcs.minesweeper;
 public class Game {
     private int rows;
     private int columns;
-    private Square[][] board;
+    public static Square[][] board;
+    private int numBomb;
 
     public Game(int rows, int columns){
         this.rows = rows;
@@ -15,10 +16,11 @@ public class Game {
             }
 
         }
+        numBomb = 10;
     }
 
     public void makeBoard(){
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < numBomb; i++){
             int randRow = (int) (Math.random() * this.rows);
             int randCol = (int) (Math.random() * this.columns);
 
@@ -64,7 +66,7 @@ public class Game {
         System.out.println();
     }
 
-    public void click(int row, int col){
+    public void leftClick(int row, int col){
         if(board[row][col].isBomb()){
             Game.lose();
         }else if(board[row][col].getNumOfBomb() == 0){
@@ -82,8 +84,21 @@ public class Game {
         }
     }
 
+    public void rightClick(int row, int col){
+        if(!board[row][col].isFlagged()){
+            board[row][col].setFlagged(true);
+        }else{
+            board[row][col].setFlagged(false);
+        }
+    }
+
     public static void lose(){
         System.out.println("You lost");
+        System.exit(1);
+    }
+
+    public int getNumBomb() {
+        return numBomb;
     }
 }
 
