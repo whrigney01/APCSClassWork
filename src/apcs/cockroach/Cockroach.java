@@ -18,7 +18,7 @@ public class Cockroach extends Actor {
         if (CockroachWorld.getLightsOff()) {
             scatter();
         } else {
-            hide();
+            hide(0);
         }
     }
 
@@ -36,35 +36,23 @@ public class Cockroach extends Actor {
         this.moveTo(nextRandLoc);
     }
 
-    public void hide() {
+    public void hide(int turnDirect) {
+        this.setColor(Color.RED);
         Location curLoc = this.getLocation();
         Grid gr = this.getGrid();
-        this.setColor(Color.RED);
-        int direct = curLoc.getDirectionToward(new Location(0, 0));
-        Location nextLoc = curLoc.getAdjacentLocation(direct);
-        if (this.getLocation() != new Location(0, 0)) {
-            if (gr.isValid(nextLoc)) {
-                if (gr.get(nextLoc) == null) {
-                    this.setDirection(direct);
-                    this.moveTo(nextLoc);
-                } else {
-                    Location nextLoc2 = curLoc.getAdjacentLocation(this.getDirection() + 45);
-                    if (gr.isValid(nextLoc2)) {
-                        if (gr.get(nextLoc2) == null) {
-                            this.setDirection(curLoc.getDirectionToward(nextLoc2));
-                            this.moveTo(nextLoc2);
-                        }
-                    } else {
-                        Location nextLoc3 = curLoc.getAdjacentLocation(this.getDirection() - 45);
-                        if (gr.isValid(nextLoc3)) {
-                            if (gr.get(nextLoc3) == null) {
-                                this.setDirection(curLoc.getDirectionToward(nextLoc3));
-                                this.moveTo(nextLoc3);
-                            }
-                        }
-                    }
-                }
-            }
+
+
+        int directToCorner = curLoc.getDirectionToward(new Location(0, 0));
+        Location nextLoc = curLoc.getAdjacentLocation(directToCorner + turnDirect);
+
+        if(gr.isValid(nextLoc) && gr.get(nextLoc) == null){
+            this.setDirection(curLoc.getDirectionToward(nextLoc));
+            this.moveTo(nextLoc);
+        }else {
+            hide(45);
+        }
+
+
         }
 
     }

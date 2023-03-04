@@ -27,12 +27,12 @@ public class CockroachWorld extends ActorWorld {
             CockroachWorld.setLightsOff(!CockroachWorld.getLightsOff());
         }
 
-        if (CockroachWorld.getLightsOff()) {
+        if (!CockroachWorld.getLightsOff()) {
             this.setMessage("The lights are on");
         } else {
             this.setMessage("The lights are off");
         }
-        return true;
+        return false;
     }
 
 }
