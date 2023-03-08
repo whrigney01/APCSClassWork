@@ -5,10 +5,10 @@ import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Cockroach extends Actor {
+    private Location cornerTo;
     public Cockroach() {
         this.setColor(null);
         this.setDirection((int) (Math.random() * 360));
@@ -40,20 +40,42 @@ public class Cockroach extends Actor {
         this.setColor(Color.RED);
         Location curLoc = this.getLocation();
         Grid gr = this.getGrid();
+        cornerTo = new Location(0,0);
+
+        if(CockroachWorld.getToCorner() == 2){
+            cornerTo = new Location(0, 39);
+        }else if(CockroachWorld.getToCorner() == 3){
+            cornerTo = new Location(19, 0);
+        }else if(CockroachWorld.getToCorner() == 4){
+            cornerTo = new Location(19, 39);
+        }
 
 
-        int directToCorner = curLoc.getDirectionToward(new Location(0, 0));
+
+
+
+        int directToCorner = curLoc.getDirectionToward(cornerTo);
         Location nextLoc = curLoc.getAdjacentLocation(directToCorner + turnDirect);
 
         if(gr.isValid(nextLoc) && gr.get(nextLoc) == null){
             this.setDirection(curLoc.getDirectionToward(nextLoc));
             this.moveTo(nextLoc);
         }else {
-            hide(45);
+            if(turnDirect == 0) {
+                hide(45);
+            }else if(turnDirect == 45) {
+                hide(-45);
+            }else if(turnDirect == -45) {
+                hide(90);
+            }else if(turnDirect == 90) {
+                hide(-90);
+            }else{
+                return;
+            }
         }
 
 
-        }
+
 
     }
 }
