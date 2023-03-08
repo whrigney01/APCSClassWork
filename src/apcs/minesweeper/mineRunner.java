@@ -3,6 +3,7 @@ package apcs.minesweeper;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+import java.awt.event.*;
 
 public class mineRunner {
     static JFrame frame;
@@ -29,6 +30,7 @@ public class mineRunner {
                 buttons[i][j].setFont(new Font("monospace", Font.BOLD, 12));
                 buttons[i][j].setText("");
                 buttonPanel.add(buttons[i][j]);
+
             }
         }
 
@@ -37,7 +39,6 @@ public class mineRunner {
         frame.setSize(570, 570);
         frame.revalidate();
         frame.setLocationRelativeTo(null);
-
 
 
     }
@@ -53,7 +54,5 @@ public class mineRunner {
                 buttons[i][j].setText(Game.board[i][j].toString());
             }
         }
-
-
     }
 }

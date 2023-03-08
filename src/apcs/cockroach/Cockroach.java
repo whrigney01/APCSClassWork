@@ -8,10 +8,15 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Cockroach extends Actor {
-    private Location cornerTo;
+    public static Location cornerTo;
+
+    private Location oldLoc;
+
     public Cockroach() {
         this.setColor(null);
         this.setDirection((int) (Math.random() * 360));
+        cornerTo = new Location(0,0);
+
     }
 
     public void act() {
@@ -20,6 +25,10 @@ public class Cockroach extends Actor {
         } else {
             hide(0);
         }
+    }
+
+    public void setOldLoc(Location oldLoc) {
+        this.oldLoc = oldLoc;
     }
 
     public void scatter() {
@@ -37,45 +46,45 @@ public class Cockroach extends Actor {
     }
 
     public void hide(int turnDirect) {
-        this.setColor(Color.RED);
+//        this.setColor(Color.RED);
         Location curLoc = this.getLocation();
         Grid gr = this.getGrid();
-        cornerTo = new Location(0,0);
-
-        if(CockroachWorld.getToCorner() == 2){
-            cornerTo = new Location(0, 39);
-        }else if(CockroachWorld.getToCorner() == 3){
-            cornerTo = new Location(19, 0);
-        }else if(CockroachWorld.getToCorner() == 4){
-            cornerTo = new Location(19, 39);
-        }
-
-
-
 
 
         int directToCorner = curLoc.getDirectionToward(cornerTo);
         Location nextLoc = curLoc.getAdjacentLocation(directToCorner + turnDirect);
 
-        if(gr.isValid(nextLoc) && gr.get(nextLoc) == null){
+
+        if(nextLoc.equals(oldLoc)){
+            return;
+        }
+
+        if (gr.isValid(nextLoc) && gr.get(nextLoc) == null) {
+
+
             this.setDirection(curLoc.getDirectionToward(nextLoc));
             this.moveTo(nextLoc);
-        }else {
-            if(turnDirect == 0) {
+        } else {
+            if (turnDirect == 0) {
                 hide(45);
-            }else if(turnDirect == 45) {
+            } else if (turnDirect == 45) {
                 hide(-45);
-            }else if(turnDirect == -45) {
+            } else if (turnDirect == -45) {
                 hide(90);
-            }else if(turnDirect == 90) {
+            } else if (turnDirect == 90) {
                 hide(-90);
-            }else{
+            } else {
                 return;
             }
         }
-
-
-
-
     }
+
+    public void moveTo(Location nextLoc){
+        oldLoc = this.getLocation();
+
+        super.moveTo(nextLoc);
+    }
+
+
 }
+
