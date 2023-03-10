@@ -46,7 +46,7 @@ public class Cockroach extends Actor {
     }
 
     public void hide(int turnDirect) {
-//        this.setColor(Color.RED);
+        this.setColor(Color.RED);
         Location curLoc = this.getLocation();
         Grid gr = this.getGrid();
 
