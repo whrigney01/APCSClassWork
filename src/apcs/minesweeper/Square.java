@@ -48,7 +48,7 @@ public class Square {
             return isFlagged;
         }
 
-        public void setFlagged ( boolean flagged){
+        public void setFlagged (boolean flagged){
             isFlagged = flagged;
         }
 
