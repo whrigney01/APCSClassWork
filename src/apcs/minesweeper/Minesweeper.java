@@ -108,8 +108,8 @@ public class Minesweeper {
         if (board[row][col].isBomb()) {
             Minesweeper.lose();
         } else if (board[row][col].getNumOfBomb() == 0) {
-            leftClickFunction(row,col);
-        } else if(board[row][col].getNumOfBomb() != 0){
+            leftClickFunction(row, col);
+        } else if (board[row][col].getNumOfBomb() != 0) {
             board[row][col].reveal();
         }
 
@@ -128,7 +128,7 @@ public class Minesweeper {
 
     }
 
-    public void leftClickFunction(int row, int col){
+    public void leftClickFunction(int row, int col) {
         for (int r1 = row - 1; r1 <= row + 1; r1++) {
             for (int c1 = col - 1; c1 <= col + 1; c1++) {
                 if (!(r1 < 0 || r1 > size - 1 || c1 < 0 || c1 > size - 1)) {
@@ -142,47 +142,59 @@ public class Minesweeper {
             }
         }
     }
-    public void leftClickFunction2(int row, int col, int oldRow, int oldCol){
+
+    public void leftClickFunction2(int row, int col, int oldRow, int oldCol) {
         for (int r1 = row - 1; r1 <= row + 1; r1++) {
             for (int c1 = col - 1; c1 <= col + 1; c1++) {
                 if (!(r1 < 0 || r1 > size - 1 || c1 < 0 || c1 > size - 1)) {
                     if (board[r1][c1].getNumOfBomb() != 0) {
                         board[r1][c1].reveal();
-                    } else if (board[r1][c1].getNumOfBomb() == 0 && oldRow != r1 && oldCol != c1) {
+                    } else if (board[r1][c1].getNumOfBomb() == 0 && oldRow != r1 && oldCol != c1  && !board[r1][c1].isBomb()) {
                         board[r1][c1].reveal();
-                        leftClickFunction(r1, c1);
+                        for (int r2 = r1 - 1; r2 <= row + 1; r2++) {
+                            for (int c2 = c1 - 1; c2 <= col + 1; c2++) {
+                                if (!(r2 < 0 || r2 > size - 1 || c2 < 0 || c2 > size - 1)) {
+                                    if (board[r2][c2].getNumOfBomb() != 0  && !board[r2][c2].isBomb()) {
+                                        board[r2][c2].reveal();
+                                    } else if (board[r2][c2].getNumOfBomb() == 0 && oldRow != r2 && oldCol != c2 && !board[r2][c2].isBomb()) {
+                                        board[r2][c2].reveal();
+                                    }
+
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
-    public void rightClick(int row, int col) {
-        if (!board[row][col].isFlagged()) {
-            board[row][col].setFlagged(true);
-        } else if (board[row][col].isFlagged()) {
-            board[row][col].setFlagged(false);
-        }
-
-        for (int i = 0; i < Minesweeper.board.length; i++) {
-            for (int j = 0; j < Minesweeper.board[i].length; j++) {
-                Minesweeper.buttons[i][j].setText("");
-                if (board[i][j].isRevealed()) {
-                    Minesweeper.buttons[i][j].setText(Minesweeper.board[i][j].toString());
+            public void rightClick(int row, int col){
+                if (!board[row][col].isFlagged()) {
+                    board[row][col].setFlagged(true);
+                } else if (board[row][col].isFlagged()) {
+                    board[row][col].setFlagged(false);
                 }
-                if (board[i][j].isFlagged()) {
-                    buttons[i][j].setText(Minesweeper.board[i][j].toString());
+
+                for (int i = 0; i < Minesweeper.board.length; i++) {
+                    for (int j = 0; j < Minesweeper.board[i].length; j++) {
+                        Minesweeper.buttons[i][j].setText("");
+                        if (board[i][j].isRevealed()) {
+                            Minesweeper.buttons[i][j].setText(Minesweeper.board[i][j].toString());
+                        }
+                        if (board[i][j].isFlagged()) {
+                            buttons[i][j].setText(Minesweeper.board[i][j].toString());
+                        }
+                    }
                 }
             }
+
+            public static void lose () {
+                System.out.println("You lost");
+                System.exit(1);
+            }
+
+            public int getNumBomb () {
+                return numBomb;
+            }
+
         }
-    }
-
-    public static void lose() {
-        System.out.println("You lost");
-        System.exit(1);
-    }
-
-    public int getNumBomb() {
-        return numBomb;
-    }
-
-}
