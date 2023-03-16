@@ -186,6 +186,18 @@ public class Minesweeper {
                                                                                                         board[r6][c6].reveal();
                                                                                                     } else if (board[r6][c6].getNumOfBomb() == 0 && oldRow != r6 && oldCol != c6 && !board[r6][c6].isBomb()) {
                                                                                                         board[r6][c6].reveal();
+                                                                                                        for (int r7 = r6 - 1; r7 <= r6 + 1; r7++) {
+                                                                                                            for (int c7 = c6 - 1; c7 <= c6 + 1; c7++) {
+                                                                                                                if (!(r7 < 0 || r7 > size - 1 || c7 < 0 || c7 > size - 1)) {
+                                                                                                                    if (board[r7][c7].getNumOfBomb() != 0  && !board[r7][c7].isBomb()) {
+                                                                                                                        board[r7][c7].reveal();
+                                                                                                                    } else if (board[r7][c7].getNumOfBomb() == 0 && oldRow != r7 && oldCol != c7 && !board[r7][c7].isBomb()) {
+                                                                                                                        board[r7][c7].reveal();
+                                                                                                                    }
+
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
                                                                                                     }
 
                                                                                                 }
