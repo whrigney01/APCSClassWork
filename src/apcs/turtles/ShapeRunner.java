@@ -40,7 +40,7 @@ public class ShapeRunner {
         SketchPadWindow sk3 = new SketchPadWindow (500, 500);
         StandardPen p3 = new StandardPen (sk3);
 
-        regPolygon r = new regPolygon (0.0, 0.0,5.0 ,10.0, 10.0);
+        regPolygon r = new regPolygon (0.0, 0.0,6.0 ,10.0, 10.0);
 
         r.draw (p3);
         r.stretchBy (10.0);
