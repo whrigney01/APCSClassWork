@@ -55,7 +55,7 @@ public class regPolygon implements Shape{
 
     @Override
     public void draw(Pen p) {
-        p.down();
+        p.up();
         p.setDirection(90);
         p.move(xPos, yPos + radius);
         p.down();
