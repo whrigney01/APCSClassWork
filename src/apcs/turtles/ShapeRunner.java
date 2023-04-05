@@ -52,6 +52,7 @@ public class ShapeRunner {
         p3.drawString(""+r);
         p3.move(-100, -115);
         p3.drawString(""+r.area());
+
     }
 
 

@@ -55,11 +55,11 @@ public class regPolygon implements Shape{
 
     @Override
     public void draw(Pen p) {
-        p.up();
+        p.down();
         p.setDirection(90);
         p.move(xPos, yPos + radius);
         p.down();
-        p.setDirection((360/sides *2));
+        p.setDirection((360/sides *2 + 90));
         for (int i = 0; i < sides; i++) {
             p.move(sideLength);
             p.turn(180 - (sides - 2) * 180 / sides );
