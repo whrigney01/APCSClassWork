@@ -47,6 +47,10 @@ public class Circle implements Shape {
         return Math.PI * (radius*radius);
     }
 
+    public double getRadius() {
+        return radius;
+    }
+
     @Override
     public void draw(Pen p) {
         p.up();

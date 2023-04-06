@@ -64,4 +64,9 @@ public class Rect implements Shape{
     public String toString() {
         return "Rect: Center = (" + xPos + ", " + yPos + "); Height = "+ height + "; Width = " + width +";";
     }
+
+    public double getWidth() {
+
+        return width;
+    }
 }

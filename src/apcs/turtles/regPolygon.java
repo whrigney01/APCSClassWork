@@ -55,19 +55,23 @@ public class regPolygon implements Shape{
 
     @Override
     public void draw(Pen p) {
+        double ap = sideLength/(2*Math.tan(Math.toRadians(180.0/sides)));
         p.up();
+        p.move(xPos,yPos);
         p.setDirection(90);
-        p.move(xPos, yPos + radius);
+        p.move(xPos, yPos + ap);
+        p.turn(90);
+        p.move(sideLength/2);
+
         p.down();
-        p.setDirection((360/sides *2 + 90));
         for (int i = 0; i < sides; i++) {
+            p.turn(360.0/sides);
             p.move(sideLength);
-            p.turn(180 - (sides - 2) * 180 / sides );
         }
     }
 
     @Override
     public String toString() {
-        return "regPolygon: Center = (" + xPos + ", " + yPos + "); Sides = "+ sides + "; Radius = " + radius +";";
+        return "regPolygon: Center = (" + xPos + ", " + yPos + "); Sides = "+ sides + "; Radius = " + radius +"; Side Length: " + sideLength + ";";
     }
 }
