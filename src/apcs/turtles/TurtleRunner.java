@@ -5,16 +5,16 @@ import TurtleGraphics.*;
 public class TurtleRunner {
     public static void main(String[] args) {
         SketchPadWindow sk = new SketchPadWindow(500,500);
-        StandardPen pen = new StandardPen(sk);
+        SlowPen pen = new SlowPen(100);
 
         SketchPadWindow sk2 = new SketchPadWindow(500,500);
-        StandardPen p2 = new WigglePen(sk2);
+        StandardPen p2 = new WigglePen(sk);
 
         SketchPadWindow sk3 = new SketchPadWindow(500,500);
-        StandardPen p3 = new RainbowPen(sk3);
+        StandardPen p3 = new RainbowPen(sk);
 
         SketchPadWindow sk4 = new SketchPadWindow(500,500);
-        StandardPen p4 = new WiggleRainbowPen(sk4);
+        StandardPen p4 = new WiggleRainbowPen(sk);
 
         pen.up();
         pen.move(25);
