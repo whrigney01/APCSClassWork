@@ -14,10 +14,11 @@ public class ZigzagRunner {
             return;
         }
         else {
-
-            p.turn();
             p.move(dist);
-            zigzag(p, dist - 1);
+            p.turn(183);
+            p.move(dist - 1);
+            p.turn(177);
+            zigzag(p, dist - 2);
         }
     }
 }

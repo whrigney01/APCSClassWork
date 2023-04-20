@@ -10,7 +10,7 @@ public class SpiralRunner {
     }
 
     public static void spiral(SlowPen p, int dist) {
-        if (dist == 0) {
+        if (dist <= 0) {
             return;
         }
         else {
