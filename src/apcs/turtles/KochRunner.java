@@ -25,31 +25,26 @@ public class KochRunner {
         //Tree Moment
         SketchPadWindow sk2 = new SketchPadWindow(500, 500);
         SlowPen p2 = new SlowPen(sk2, 10);
-        drawTree(p2, length / 2.0 , 0, 30.0);
+         drawTree(p2, 0 ,0, Math.PI/2.0, 100, 10);
 
 
     }
 
-    public static void drawTree(Pen p, double length, int degree, double turn){
-        if(degree == 0){
-            p.move(length);
-            p.turn(turn);
-            p.move(length/1.5);
-            p.move(-length/1.5);
-            p.turn(-turn * 2);
-            p.move(length/1.5);
-            p.move(-length/1.5);
-            p.turn(-turn);
-            p.move(-length);
-        }else{
-            p.move(length);
-            p.turn(turn);
-            p.move(length/1.5);
-            drawTree(p, length/1.5,degree - 1, turn/1.5);
-            p.move(-length/1.5);
-            p.turn(-turn * 2);
-            p.move(length/1.5);
+    public static void drawTree(Pen p, double x1, double y1, double angle, double length, int degree){
+        if (degree == 0) {
+            return;
         }
+
+        double x2 = x1 + length * Math.cos(angle);
+        double y2 = y1 + length * Math.sin(angle);
+
+        p.up();
+        p.move(x1, y1);
+        p.down();
+        p.move(x2, y2);
+
+        drawTree(p, x2, y2, angle - Math.PI / 4.0, length / 1.5, degree - 1);
+        drawTree(p, x2, y2, angle + Math.PI / 4.0, length / 1.5, degree - 1);
 
     }
 
