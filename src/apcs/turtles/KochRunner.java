@@ -4,6 +4,8 @@ import TurtleGraphics.Pen;
 import TurtleGraphics.SketchPadWindow;
 import TurtleGraphics.StandardPen;
 
+
+
 public class KochRunner {
     public static void main(String[] args) {
         SketchPadWindow sk = new SketchPadWindow (500, 500);
@@ -25,27 +27,26 @@ public class KochRunner {
         //Tree Moment
         SketchPadWindow sk2 = new SketchPadWindow(500, 500);
         SlowPen p2 = new SlowPen(sk2, 10);
-         drawTree(p2, 0 ,0, Math.PI/2.0, 100, 10);
+         drawTree(p2, 0 ,0, Math.PI/2, 100, 10);
 
 
     }
 
-    public static void drawTree(Pen p, double x1, double y1, double angle, double length, int degree){
+    public static void drawTree(Pen p, double x, double y, double angle, double length, int degree){
         if (degree == 0) {
-            return;
+           return;
         }
 
-        double x2 = x1 + length * Math.cos(angle);
-        double y2 = y1 + length * Math.sin(angle);
+        double y2 = y + length * Math.sin(angle);
+        double x2 = x + length * Math.cos(angle);
 
         p.up();
-        p.move(x1, y1);
+        p.move(x,y);
         p.down();
         p.move(x2, y2);
 
-        drawTree(p, x2, y2, angle - Math.PI / 4.0, length / 1.5, degree - 1);
-        drawTree(p, x2, y2, angle + Math.PI / 4.0, length / 1.5, degree - 1);
-
+        drawTree(p, x2, y2, angle - Math.PI/4, length / 1.5, degree - 1);
+        drawTree(p, x2, y2, angle + Math.PI/4, length / 1.5, degree - 1);
     }
 
     public static void drawKochCurve(Pen p, double length, int degree){
