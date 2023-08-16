@@ -88,7 +88,7 @@ public class Roman {
         }
         answer += count;
 
-            System.out.println(answer);
+        System.out.println(answer);
         System.out.println(str);
 
     }
